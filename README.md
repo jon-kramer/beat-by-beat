@@ -1,10 +1,15 @@
-# Beat by Beat - Card Generator
+# Beat by Beat
 
-A printable card generation system for the Beat by Beat dance-themed deck builder game.
+A competitive dance-battle card game where players choreograph routines, impress judges, and battle for the spotlight.
 
 ## Overview
 
-This system generates print-ready HTML files for all game cards, designed for standard 8.5×11" paper with 9 poker-sized cards (2.5" × 3.5") per sheet.
+Beat by Beat is a deck-building card game where 2-5 players compete as dancers trying to impress various judges. Players build their routines from Move cards, adapt to Rhythm cards, and avoid Stumbles while trying to meet Judge requirements.
+
+This repository contains a complete card generation system that produces:
+- **HTML** printable sheets (3×3 cards per letter-size page)
+- **PDF** print-ready files for professional printing
+- **TTS** high-resolution sprite sheets for Tabletop Simulator
 
 ## Generated Cards
 
@@ -26,86 +31,135 @@ Each dance style has a unique thematic color:
 - **Styleless** (starter deck): Cream `#FAF8F3`
 - **Multi-style**: Gradient blending both style colors
 
+## Quick Start
+
+### Setup
+
+First-time setup (installs all dependencies):
+
+```bash
+./scripts/setup.sh
+```
+
+### Generate All Cards
+
+Generate HTML, PDF, and TTS formats in one command:
+
+```bash
+./scripts/generate-all.sh
+```
+
+Output locations:
+- HTML: `output/html/`
+- PDF: `output/pdf/`
+- TTS: `output/tts/`
+
+### Publish to Tabletop Simulator
+
+```bash
+./scripts/publish-tts.sh
+```
+
+This generates TTS sprites, commits them to git, pushes to GitHub, and displays the raw URLs for importing into Tabletop Simulator.
+
 ## Directory Structure
 
 ```
 beat-by-beat/
-├── card-data/          # CSV files with card data
+├── card-data/           # CSV files with card definitions
 │   ├── moves.csv
 │   ├── rhythm-cards.csv
 │   ├── judge-cards.csv
 │   └── stumble-cards.csv
-├── card-generator/     # Generation scripts
-│   └── generator.py
-├── output/            # Generated HTML files
-│   ├── index.html            # Card browser
-│   ├── move-cards.html       # All 170 move cards (19 sheets)
-│   ├── rhythm-cards.html     # All 80 rhythm cards (9 sheets)
-│   ├── judge-cards.html      # All 12 judge cards (2 sheets)
-│   ├── stumble-cards.html    # All 20 stumble cards (3 sheets)
-│   └── [card-type]-backs.html (for each card type)
-├── images/            # Future: custom card artwork
-└── docs/              # Game documentation
+├── card-generator/      # Python generators
+│   ├── generator.py     # HTML generator
+│   ├── pdf_generator.py # PDF generator
+│   └── tts_generator.py # TTS sprite sheet generator
+├── output/             # Generated files
+│   ├── html/          # HTML printable sheets
+│   ├── pdf/           # Print-ready PDFs
+│   └── tts/           # TTS sprite sheets (4096×4096)
+├── scripts/           # Utility scripts
+│   ├── setup.sh
+│   ├── generate-all.sh
+│   ├── publish-tts.sh
+│   └── get-tts-urls.sh
+└── docs/              # Documentation
 ```
 
-## Usage
+## Card Types
 
-### Generating Cards
+### Move Cards
+The core of your dance routine. Each move has:
+- **Cost**: Energy required to perform
+- **Type**: Step, Spin, Jump, Pose, Flow, or Pop
+- **Style**: Latin, Ballroom, Classical, Jazz, or Street
+- **Bonus**: Points awarded for successful execution
 
-```bash
-python3 card-generator/generator.py
-```
+### Rhythm Cards
+Modify gameplay each round with special effects or provide blank cards for freestyle.
 
-This will regenerate all HTML files in the `output/` directory.
+### Judge Cards
+Win conditions that award points for meeting specific requirements (style combinations, move types, etc.).
 
-### Printing Cards
+### Stumble Cards
+Penalty cards that clog your hand when you fail a move.
 
-1. Open `output/index.html` in your web browser
-2. Click on the card type you want to print (e.g., "Move Cards")
-3. Use Print (Cmd+P or Ctrl+P)
-4. Settings:
+## Printing Cards
+
+### Using HTML Files
+
+1. Open HTML files in `output/html/` in your web browser
+2. Use Print (Cmd+P or Ctrl+P)
+3. Settings:
    - Paper size: Letter (8.5×11")
    - Margins: None
    - Scale: 100%
    - Background graphics: On
-5. Print or save as PDF - all sheets will print together!
+4. Print or save as PDF
 
-### Printing Double-Sided Cards
+### Using PDF Files
+
+Open files in `output/pdf/` and print directly. Perfect for print shops.
+
+### Double-Sided Printing
 
 For cards with backs:
 
-1. Print all front sheets (e.g., `move-cards.html` - prints all 19 sheets)
+1. Print all front sheets (e.g., `move-cards.pdf`)
 2. Flip the paper stack (check orientation with a test print)
-3. Print the back file (e.g., `move-backs.html`) - repeat as needed for the number of sheets
+3. Print the back file (e.g., `move-backs.pdf`) - repeat as needed
 
-**Note**: All backs are identical for each card type, so you print the same back design on each sheet.
+**Note**: All backs are identical for each card type.
 
-## Customization
+## Development
 
-### Editing Card Data
+### Modifying Cards
 
-All card data is stored in CSV files in `card-data/`. Edit these files and re-run the generator to update the cards.
+1. Edit the CSV files in `card-data/`
+2. Run `./scripts/generate-all.sh` to regenerate all formats
+3. Check `output/` directories for results
 
-### Adding Custom Artwork
+### Card Data Format
 
-The system is designed to support custom vector images:
+See CSV files in `card-data/` for examples. Key fields:
 
-1. Create SVG files for each card (filenames match the `image_file` column in CSV)
-2. Place them in the `images/` directory
-3. Update `generator.py` to use actual image files instead of placeholder SVG icons
+**moves.csv:**
+- name, cost, type, style, bonus, deck_type
 
-Current placeholder graphics:
-- **Type icons**: Simple geometric shapes representing each movement type (Step, Spin, Jump, Pose, Flow, Pop)
-- **Color backgrounds**: Style-specific colors with gradients for multi-style cards
+**rhythm-cards.csv:**
+- name, effect, condition, flavor_text, copies
 
-### Modifying Card Design
+**judge-cards.csv:**
+- name, title, difficulty, requirement, reward_points, ongoing_effect
 
-The card layout and styling is defined in the `generate_css()` function in `generator.py`. You can customize:
+### Technical Details
 
-- Fonts and sizes
-- Colors and backgrounds
-- Layout and spacing
-- Border styles
+- **HTML/CSS**: Cards designed at 2.5" × 3.5" (poker size)
+- **TTS Rendering**: Uses Playwright to render HTML directly into sprite sheets
+- **Consistency**: All formats share the same HTML/CSS source for perfect visual consistency
+
+See [docs/TTS-RENDERING.md](docs/TTS-RENDERING.md) for detailed technical documentation.
 
 ## Card Counts
 
@@ -119,63 +173,32 @@ The card layout and styling is defined in the `generate_css()` function in `gene
 
 Plus 4 back files (one per card type). Each HTML file contains all sheets for that card type.
 
-## Setup
+## Scripts Reference
 
-First-time setup (installs all dependencies):
+- `./scripts/setup.sh` - Install dependencies (Python, uv, Playwright)
+- `./scripts/generate-all.sh` - Generate all card formats
+- `./scripts/publish-tts.sh` - Generate and publish TTS sprites to GitHub
+- `./scripts/get-tts-urls.sh` - Display GitHub raw URLs for TTS import
 
-```bash
-./setup.sh
-```
+## Documentation
 
-This installs Python dependencies via `uv` and Playwright's Chromium browser.
+Detailed guides available in the `docs/` directory:
 
-## Advanced Features
+- **[docs/PRINTING.md](docs/PRINTING.md)** - Complete printing guide with paper recommendations, cutting tips, and troubleshooting
+- **[docs/TTS-RENDERING.md](docs/TTS-RENDERING.md)** - Technical details on TTS sprite sheet generation and HTML rendering
+- **[docs/TTS-GITHUB.md](docs/TTS-GITHUB.md)** - How to host TTS sprites on GitHub for free, permanent URLs
+- **[docs/GITHUB-SETUP.md](docs/GITHUB-SETUP.md)** - Step-by-step GitHub setup for TTS hosting
 
-### Automated PDF Generation
+## Requirements
 
-Generate print-ready PDFs without using your browser:
+- Python 3.11+
+- [uv](https://github.com/astral-sh/uv) (Python package manager)
+- Playwright (automatically installed by setup)
 
-```bash
-uv run python card-generator/pdf_generator.py
-```
+## License
 
-PDFs are created in the `pdf/` directory.
+[Add your license here]
 
-### Tabletop Simulator Export
+## Contributing
 
-Generate sprite sheets for online play:
-
-```bash
-uv run python card-generator/tts_generator.py
-```
-
-Creates 10×7 sprite sheets in the `tts/` directory.
-
-See [PDF-AND-TTS-GUIDE.md](PDF-AND-TTS-GUIDE.md) for detailed instructions.
-
-### Generate Everything
-
-```bash
-./generate-all.sh
-```
-
-Generates HTML, PDF, and TTS formats in one command!
-
-## Future Enhancements
-
-- [x] Generate PDF output directly
-- [x] Tabletop Simulator sprite sheets
-- [ ] Add unique vector illustrations for each card
-- [ ] Add bleed lines for professional printing
-- [ ] Create card sorting/organizing sheets
-- [ ] Add QR codes linking to online rulebook
-- [ ] Token/counter sheets
-- [ ] Player aid cards
-- [ ] Automated TTS JSON deck configuration
-- [ ] Direct image upload to Imgur
-
-## Credits
-
-Game design and card data extracted from documentation in `docs/`.
-
-Color scheme: Coral, Indigo, Sage, Gold, and Slate Blue palette.
+[Add contribution guidelines if applicable]

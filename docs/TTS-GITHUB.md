@@ -7,7 +7,7 @@ Host your TTS sprite sheets on GitHub for free, permanent URLs.
 ### First Time Only
 
 ```bash
-# 1. Set up GitHub (see GITHUB-SETUP.md for details)
+# 1. Set up GitHub (see docs/GITHUB-SETUP.md for details)
 gh auth login
 gh repo create beat-by-beat --public --source=. --remote=origin
 git add .
@@ -15,7 +15,7 @@ git commit -m "Initial commit"
 git push -u origin main
 
 # 2. Publish TTS sprites
-./publish-tts.sh
+./scripts/publish-tts.sh
 ```
 
 ### Every Time You Update Cards
@@ -25,7 +25,7 @@ git push -u origin main
 vim card-data/moves.csv
 
 # Regenerate and publish
-./publish-tts.sh
+./scripts/publish-tts.sh
 ```
 
 The script will:
@@ -76,12 +76,12 @@ Repeat for rhythm, judge, and stumble cards.
 
 ## Getting URLs
 
-The `./publish-tts.sh` script automatically prints all URLs after pushing.
+The `./scripts/publish-tts.sh` script automatically prints all URLs after pushing.
 
 **Or get them anytime:**
 
 ```bash
-./get-tts-urls.sh
+./scripts/get-tts-urls.sh
 ```
 
 This shows organized URLs ready to copy/paste.
@@ -93,13 +93,13 @@ This shows organized URLs ready to copy/paste.
 vim card-data/moves.csv
 
 # Regenerate everything
-./generate-all.sh
+./scripts/generate-all.sh
 
 # Test locally in browser
-open output/index.html
+open output/html/index.html
 
 # When ready, publish to GitHub
-./publish-tts.sh
+./scripts/publish-tts.sh
 
 # Output:
 # 🎮 Beat by Beat - TTS Publisher
@@ -155,7 +155,7 @@ Save your TTS deck configurations:
 
 When you change cards:
 
-1. `./publish-tts.sh` (generates + pushes to GitHub)
+1. `./scripts/publish-tts.sh` (generates + pushes to GitHub)
 2. In TTS, **reload** the affected decks:
    - Delete old deck
    - Re-import with same URL
@@ -214,9 +214,9 @@ For public playtesting, public repo is simpler and free!
 ## Summary
 
 **Setup once:**
-- GITHUB-SETUP.md has full instructions
+- docs/GITHUB-SETUP.md has full instructions
 - Takes ~5 minutes
 
 **Use forever:**
-- `./publish-tts.sh` → copies URLs → paste in TTS
+- `./scripts/publish-tts.sh` → copies URLs → paste in TTS
 - That's it!

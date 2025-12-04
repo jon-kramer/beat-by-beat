@@ -15,24 +15,24 @@ echo ""
 
 # Step 2: Check git status
 echo "Step 2/4: Checking what changed..."
-if ! git diff --quiet tts/ 2>/dev/null && ! git diff --cached --quiet tts/ 2>/dev/null; then
+if ! git diff --quiet output/tts/ 2>/dev/null && ! git diff --cached --quiet output/tts/ 2>/dev/null; then
     echo ""
-    echo "📝 Changes detected in tts/ folder:"
-    git status tts/ --short
+    echo "📝 Changes detected in output/tts/ folder:"
+    git status output/tts/ --short
     echo ""
-elif [ -n "$(git ls-files --others --exclude-standard tts/)" ]; then
+elif [ -n "$(git ls-files --others --exclude-standard output/tts/)" ]; then
     echo ""
-    echo "📝 New files in tts/ folder:"
-    git ls-files --others --exclude-standard tts/
+    echo "📝 New files in output/tts/ folder:"
+    git ls-files --others --exclude-standard output/tts/
     echo ""
 else
-    echo "✓ No changes detected in tts/ folder"
+    echo "✓ No changes detected in output/tts/ folder"
     echo ""
 fi
 
 # Step 3: Add to staging
 echo "Step 3/4: Staging TTS files..."
-git add tts/
+git add output/tts/
 
 # Step 4: Ask user if they want to commit
 echo ""
@@ -60,10 +60,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo ""
 
     # Generate and display URLs
-    ./get-tts-urls.sh
+    $(dirname "$0")/get-tts-urls.sh
 else
     echo ""
     echo "❌ Cancelled. Changes are staged but not committed."
-    echo "   Run 'git reset HEAD tts/' to unstage"
+    echo "   Run 'git reset HEAD output/tts/' to unstage"
     echo ""
 fi

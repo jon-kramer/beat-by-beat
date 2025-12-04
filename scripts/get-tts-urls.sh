@@ -24,23 +24,23 @@ else
 fi
 
 BRANCH="main"
-BASE_URL="https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/tts"
+BASE_URL="https://raw.githubusercontent.com/${USERNAME}/${REPO}/${BRANCH}/output/tts"
 
 echo "Repository: ${USERNAME}/${REPO}"
 echo "Branch: ${BRANCH}"
 echo ""
 
-# Find all PNG files in tts/ directory
-if [ ! -d "tts" ]; then
-    echo "❌ Error: tts/ directory not found"
+# Find all PNG files in output/tts/ directory
+if [ ! -d "output/tts" ]; then
+    echo "❌ Error: output/tts/ directory not found"
     echo "   Run './publish-tts.sh' first"
     exit 1
 fi
 
-PNG_FILES=$(find tts -name "*.png" -type f | sort)
+PNG_FILES=$(find output/tts -name "*.png" -type f | sort)
 
 if [ -z "$PNG_FILES" ]; then
-    echo "❌ Error: No PNG files found in tts/"
+    echo "❌ Error: No PNG files found in output/tts/"
     echo "   Run './publish-tts.sh' first"
     exit 1
 fi

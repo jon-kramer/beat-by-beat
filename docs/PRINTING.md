@@ -123,13 +123,7 @@ Not recommended - makes cards too thick and slippery to shuffle well.
 If you edit the CSV data files and want to regenerate:
 
 ```bash
-./generate.sh
-```
-
-Or manually:
-
-```bash
-python3 card-generator/generator.py
+./scripts/generate-all.sh
 ```
 
 ## Adding Custom Artwork

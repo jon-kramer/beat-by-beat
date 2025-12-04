@@ -4,7 +4,14 @@
       "Bash(mkdir:*)",
       "Bash(python3:*)",
       "Bash(chmod:*)",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(./generate-all.sh:*)",
+      "Bash(if [ -d \"pdf\" ])",
+      "Bash(then mv pdf/* output/pdf/)",
+      "Bash(fi)",
+      "Bash(if [ -d \"tts\" ])",
+      "Bash(then mv tts/* output/tts/)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

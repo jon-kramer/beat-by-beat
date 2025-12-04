@@ -552,7 +552,10 @@ def main():
     """Main generator function"""
     base_dir = Path(__file__).parent.parent
     data_dir = base_dir / 'card-data'
-    output_dir = base_dir / 'output'
+    output_dir = base_dir / 'output' / 'html'
+
+    # Create output directory
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     cards_per_sheet = 9
 

@@ -58,7 +58,7 @@ git push -u origin main
 Now you can use the automated workflow:
 
 ```bash
-./publish-tts.sh
+./scripts/publish-tts.sh
 ```
 
 This will:
@@ -73,7 +73,7 @@ This will:
 To see the TTS URLs without regenerating:
 
 ```bash
-./get-tts-urls.sh
+./scripts/get-tts-urls.sh
 ```
 
 ## How It Works
@@ -98,7 +98,7 @@ These URLs:
 vim card-data/moves.csv
 
 # Regenerate and publish to GitHub
-./publish-tts.sh
+./scripts/publish-tts.sh
 
 # Copy the URLs it prints
 # Paste into Tabletop Simulator
@@ -146,7 +146,7 @@ git push origin main
 
 ### Want to use a different branch?
 
-Edit `get-tts-urls.sh` and change:
+Edit `scripts/get-tts-urls.sh` and change:
 ```bash
 BRANCH="main"
 ```
@@ -175,7 +175,7 @@ git push -u origin main
 
 **Every time you update cards:**
 ```bash
-./publish-tts.sh
+./scripts/publish-tts.sh
 ```
 
 That's it! The script handles the rest.

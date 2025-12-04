@@ -42,11 +42,11 @@ async def html_to_pdf(html_path, pdf_path):
 async def main():
     """Generate PDFs for all card HTML files"""
     base_dir = Path(__file__).parent.parent
-    output_dir = base_dir / 'output'
-    pdf_dir = base_dir / 'pdf'
+    output_dir = base_dir / 'output' / 'html'
+    pdf_dir = base_dir / 'output' / 'pdf'
 
     # Create PDF directory
-    pdf_dir.mkdir(exist_ok=True)
+    pdf_dir.mkdir(parents=True, exist_ok=True)
 
     # List of HTML files to convert
     html_files = [
