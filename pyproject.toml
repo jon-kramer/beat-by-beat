@@ -1,0 +1,18 @@
+[project]
+name = "beat-by-beat"
+version = "1.0.0"
+description = "Card generator for Beat by Beat dance-themed deck builder game"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+pdf = [
+    "playwright>=1.40.0",
+]
+tts = [
+    "Pillow>=10.0.0",
+]
+all = [
+    "playwright>=1.40.0",
+    "Pillow>=10.0.0",
+]

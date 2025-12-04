@@ -1,0 +1,42 @@
+name,effect,condition,category,copies,flavor_text
+Steady Rhythm,,,,4,The beat continues unwavering.
+Hold the Groove,,,,4,Stay in the pocket.
+Feel the Music,,,,4,Let the song guide you.
+In the Zone,,,,4,Everything clicks into place.
+Breathe,,,,4,A moment of focus.
+The Crowd Watches,,,,4,All eyes on the floor.
+Building Tension,,,,4,Something's coming...
+Rhythmic Pulse,,,,4,The heartbeat of the dance.
+Finding Your Center,,,,4,Balance in motion.
+Dance Floor Energy,,,,4,The room is electric.
+Quiet Confidence,,,,4,No flash needed.
+Trust the Process,,,,4,One move at a time.
+Light Feet,-1 cost,All moves,cost,2,
+Footwork Focus,-1 cost,Step moves,cost,1,
+Spin Cycle,-1 cost,Spin moves,cost,1,
+Take Flight,-1 cost,Jump moves,cost,1,
+Strike a Pose,-1 cost,Pose moves,cost,1,
+Ride the Wave,-1 cost,Flow moves,cost,1,
+Sharp Edges,-1 cost,Pop moves,cost,1,
+Familiar Ground,-2 cost,Moves matching your most-played style this round,cost,1,
+Second Nature,Cost becomes 1,Moves you've already played this game,cost,1,
+Crowd Pleaser,+1 bonus,All moves,bonus,2,
+Fancy Footwork,+1 bonus,Step moves,bonus,1,
+Dizzying Display,+1 bonus,Spin moves,bonus,1,
+Hang Time,+1 bonus,Jump moves,bonus,1,
+Picture Perfect,+1 bonus,Pose moves,bonus,1,
+Liquid Motion,+1 bonus,Flow moves,bonus,1,
+Crisp Hits,+1 bonus,Pop moves,bonus,1,
+Style Points,+2 bonus,Moves with a style you haven't played this round,bonus,1,
+Signature Move,+3 bonus,Cost 5 moves only,bonus,1,
+Second Wind,Bonus Stamina action,Unconditional,recovery,2,
+Creative Spark,Bonus Inspiration action,Unconditional,recovery,1,
+Quick Study,Bonus Refinement action,Unconditional,recovery,1,
+Dancer's Choice,Take 2 different recovery actions,Unconditional,recovery,1,
+Deep Breath,Draw 3 instead of 2 for Stamina,Unconditional,recovery,1,
+Tough Crowd,Crowd favor requires cost 4+ to win,,crowd,1,
+Standing Ovation,Ties all win crowd favor (but no +1 discount),,crowd,1,
+Underdog Moment,Lowest cost among successful moves wins crowd favor,,crowd,1,
+Momentum,+1 chain discount,,chain,1,
+Fresh Start,Chain discount applies even if previous cost was higher,,chain,1,
+Combo Breaker,No chain discounts this beat (for anyone),,chain,1,

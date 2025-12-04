@@ -1,0 +1,13 @@
+name,title,difficulty,requirement,reward_points,ongoing_effect,flavor_quote,image_file
+Valentina,the Passionate,2,5 Latin + 3 Any (all successfully executed),10,Your Latin moves gain +1 bonus score,Dance is emotion made visible.,valentina.svg
+Lord Ashworth,the Refined,2,5 Ballroom + 3 Any (all successfully executed),10,Your Ballroom moves gain +1 bonus score,Elegance is not about being noticed. It's about being remembered.,lord-ashworth.svg
+Ekaterina,the Perfectionist,2,5 Classical + 3 Any (all successfully executed),10,Your Classical moves gain +1 bonus score,Technique is the foundation. Artistry is the ceiling.,ekaterina.svg
+Marcus "Showtime" Bell,the Showstopper,2,5 Jazz + 3 Any (all successfully executed),10,Your Jazz moves gain +1 bonus score,If they're not watching you you're doing it wrong.,marcus-bell.svg
+DJ K-Pulse,the Beat Master,2,5 Street + 3 Any (all successfully executed),10,Your Street moves gain +1 bonus score,Feel the beat. Be the beat.,dj-k-pulse.svg
+The Whirlwind,Master of Rotation,3,6 Spin moves + 2 Any (all successfully executed),14,All Spin moves cost -1,Stillness is death. Motion is life.,the-whirlwind.svg
+Icarus,Sky Dancer,3,5 Jump moves + 3 Any (all successfully executed),14,All Jump moves gain +1 bonus score,Gravity is a suggestion.,icarus.svg
+The Sculptor,Form and Flow,2,4 Pose + 4 Flow moves (all successfully executed),12,Pose and Flow moves cost -1,Movement is clay. The body is the artist.,the-sculptor.svg
+The Minimalist,Less is More,1,Execute 8 moves all cost 3 or less,8,At end of each round if you played no cost 4+ moves draw 1 card,Complexity is easy. Simplicity is hard.,the-minimalist.svg
+The Polyglot,Master of All,3,Execute at least 1 move from each of the 5 styles in one round (+ 3 any),16,Multi-style cards count as ALL their listed styles (not just one),Why speak one language when you can speak five?,the-polyglot.svg
+The Machine,Perfect Execution,2,Execute 8 moves successfully with no failed executions,10,If you successfully execute all 8 moves in a round +3 points,Never stop. Never stumble. Never fail.,the-machine.svg
+The Showstopper,Crowd Favorite,3,Win crowd favor (outright not style-matched) 4 times in one round,12,When you win crowd favor +1 bonus point (in addition to normal rewards),They came to see a star. Give them one.,the-showstopper.svg
