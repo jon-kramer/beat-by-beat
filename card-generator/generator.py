@@ -63,6 +63,25 @@ TYPE_ICONS = {
     </svg>''',
 }
 
+# Recovery action icons
+RECOVERY_ICONS = {
+    'Stamina': '''<svg viewBox="0 0 100 100" class="recovery-icon">
+        <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="6"/>
+        <path d="M30,50 L45,35 L45,65 Z" fill="currentColor"/>
+        <path d="M70,50 L55,35 L55,65 Z" fill="currentColor"/>
+    </svg>''',
+
+    'Inspiration': '''<svg viewBox="0 0 100 100" class="recovery-icon">
+        <path d="M50,15 L58,45 L88,45 L63,63 L73,93 L50,75 L27,93 L37,63 L12,45 L42,45 Z" fill="currentColor"/>
+    </svg>''',
+
+    'Refinement': '''<svg viewBox="0 0 100 100" class="recovery-icon">
+        <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="6" rx="5"/>
+        <line x1="30" y1="30" x2="70" y2="70" stroke="currentColor" stroke-width="6"/>
+        <line x1="70" y1="30" x2="30" y2="70" stroke="currentColor" stroke-width="6"/>
+    </svg>''',
+}
+
 
 def get_style_color(style):
     """Get the color for a style (or blend colors for multi-style)"""
@@ -87,6 +106,7 @@ def generate_move_card(move, card_num):
     style_attr = f'background: {style_bg};' if is_gradient else f'background-color: {style_bg};'
 
     type_icon = TYPE_ICONS.get(move['type'], '')
+    recovery_icon = RECOVERY_ICONS.get(move.get('recovery_action', 'Stamina'), '')
 
     style_display = move['style'] if move['style'] else 'Basic'
 
@@ -100,9 +120,9 @@ def generate_move_card(move, card_num):
                 {type_icon}
             </div>
             <div class="card-stats">
-                <div class="stat-row cost-row">
-                    <span class="stat-label">Cost</span>
-                    <span class="stat-value cost-value">{move['cost']}</span>
+                <div class="stat-row technique-row">
+                    <span class="stat-label">Technique</span>
+                    <span class="stat-value technique-value">{move['cost']}</span>
                 </div>
                 <div class="stat-row">
                     <span class="stat-label">Type</span>
@@ -115,6 +135,10 @@ def generate_move_card(move, card_num):
                 <div class="stat-row bonus-row">
                     <span class="stat-label">Bonus</span>
                     <span class="stat-value bonus-value">+{move['bonus']}</span>
+                </div>
+                <div class="stat-row recovery-row">
+                    <span class="stat-label-recovery">{recovery_icon}</span>
+                    <span class="stat-value recovery-value">{move.get('recovery_action', 'Stamina')}</span>
                 </div>
             </div>
         </div>
@@ -307,11 +331,11 @@ body {
     color: #222;
 }
 
-.cost-row {
+.technique-row {
     background: #e8e8e8;
 }
 
-.cost-value {
+.technique-value {
     font-size: 14pt;
     font-weight: bold;
     color: #c0392b;
@@ -325,6 +349,29 @@ body {
     font-size: 12pt;
     font-weight: bold;
     color: #27ae60;
+}
+
+.recovery-row {
+    background: #e3f2fd;
+    display: flex;
+    align-items: center;
+    gap: 0.05in;
+}
+
+.stat-label-recovery {
+    flex-shrink: 0;
+}
+
+.recovery-icon {
+    width: 0.25in;
+    height: 0.25in;
+    color: #1976d2;
+}
+
+.recovery-value {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #1565c0;
 }
 
 /* Rhythm Cards */
