@@ -44,21 +44,23 @@ def get_github_raw_url(username, repo, branch, filepath):
 def find_tts_files(tts_dir):
     """Find all TTS sprite sheet PNG files"""
     files = {
-        'move_fronts': [],
+        'starter_fronts': [],
+        'pool_fronts': [],
         'move_back': None,
         'rhythm_fronts': [],
         'rhythm_back': None,
         'judge_fronts': [],
         'judge_back': None,
         'stumble_fronts': [],
-        'stumble_back': None,
     }
 
     for png_file in sorted(tts_dir.glob('*.png')):
         name = png_file.name
 
-        if 'move-cards' in name and 'back' not in name:
-            files['move_fronts'].append(name)
+        if 'starter-cards' in name and 'back' not in name:
+            files['starter_fronts'].append(name)
+        elif 'pool-cards' in name and 'back' not in name:
+            files['pool_fronts'].append(name)
         elif 'move-backs' in name:
             files['move_back'] = name
         elif 'rhythm-cards' in name and 'back' not in name:
@@ -71,8 +73,6 @@ def find_tts_files(tts_dir):
             files['judge_back'] = name
         elif 'stumble-cards' in name and 'back' not in name:
             files['stumble_fronts'].append(name)
-        elif 'stumble-backs' in name:
-            files['stumble_back'] = name
 
     return files
 
@@ -187,81 +187,110 @@ def generate_tts_save(username, repo, tts_files, branch="main"):
     x, y, z = 0, 1, 0
     spacing = 4.5  # Space between decks
 
-    # Count starter vs pool move cards
-    starter_count = 0
-    pool_count = 0
-    with open(data_dir / 'moves.csv', 'r') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            if row['deck_type'] == 'starter':
-                starter_count += 5  # 5 copies per player
-            else:
-                pool_count += 1
+    # Count starter and pool move cards
+    starter_count = count_cards_in_csv(data_dir / 'moves.csv', lambda row: row['deck_type'] == 'starter')
+    pool_count = count_cards_in_csv(data_dir / 'moves.csv', lambda row: row['deck_type'] == 'pool')
 
-    total_move_count = starter_count + pool_count
-
-    # STARTER DECK (first 55 cards from sheet 1)
-    face_url = get_github_raw_url(username, repo, branch, tts_files['move_fronts'][0])
     back_url = get_github_raw_url(username, repo, branch, tts_files['move_back'])
 
-    starter_deck = create_deck_object(
-        name="Starter Move Cards (5 Players)",
-        face_url=face_url,
-        back_url=back_url,
-        num_cards=starter_count,  # 55 starter cards
-        position=[x, y, z],
-        description="Starting deck - Deal 11 cards to each of 5 players",
-        deck_id=deck_id_counter
-    )
-    objects.append(starter_deck)
-    x += spacing
-    deck_id_counter += 1
+    # STARTER DECK (single copies - user will duplicate)
+    if tts_files['starter_fronts']:
+        face_url = get_github_raw_url(username, repo, branch, tts_files['starter_fronts'][0])
 
-    # POOL MOVE DECKS (remaining sheets)
-    # Calculate cards per sheet
-    cards_processed = starter_count
-    for i, front_file in enumerate(tts_files['move_fronts']):
-        if cards_processed >= total_move_count:
-            break
+        starter_deck = create_deck_object(
+            name="Starter Move Cards",
+            face_url=face_url,
+            back_url=back_url,
+            num_cards=starter_count,
+            position=[x, y, z],
+            description="Starting cards - Print/duplicate 5 times for 5 players",
+            deck_id=deck_id_counter
+        )
+        objects.append(starter_deck)
+        x += spacing
+        deck_id_counter += 1
 
-        # Calculate how many cards are on this sheet
-        cards_remaining = total_move_count - cards_processed
-        cards_on_sheet = min(70, cards_remaining)
+    # POOL MOVE DECK (combined into one deck from all sheets)
+    if tts_files['pool_fronts']:
+        # Combine all pool card sheets into a single deck
+        all_deck_ids = []
+        custom_decks = {}
 
-        # Skip starter cards on first sheet
-        if i == 0:
-            cards_on_sheet = min(70 - starter_count, pool_count)
-            cards_processed += cards_on_sheet
+        cards_processed = 0
+        for i, front_file in enumerate(tts_files['pool_fronts'], start=1):
+            cards_remaining = pool_count - cards_processed
+            cards_on_sheet = min(70, cards_remaining)
 
-            if cards_on_sheet > 0:
-                face_url = get_github_raw_url(username, repo, branch, front_file)
-                deck = create_deck_object(
-                    name=f"Pool Move Cards {i + 1}",
-                    face_url=face_url,
-                    back_url=back_url,
-                    num_cards=cards_on_sheet,
-                    position=[x, y, z],
-                    description="Advanced move cards for drafting",
-                    deck_id=deck_id_counter
-                )
-                objects.append(deck)
-                x += spacing
-                deck_id_counter += 1
-        else:
-            cards_processed += cards_on_sheet
+            # Add deck IDs for this sheet
+            start_id = deck_id_counter * 100
+            all_deck_ids.extend(range(start_id, start_id + cards_on_sheet))
+
+            # Add custom deck entry
             face_url = get_github_raw_url(username, repo, branch, front_file)
-            deck = create_deck_object(
-                name=f"Pool Move Cards {i + 1}",
-                face_url=face_url,
-                back_url=back_url,
-                num_cards=cards_on_sheet,
-                position=[x, y, z],
-                description="Advanced move cards for drafting",
-                deck_id=deck_id_counter
-            )
-            objects.append(deck)
-            x += spacing
+            num_width, num_height = calculate_grid_size(cards_on_sheet)
+
+            custom_decks[str(deck_id_counter)] = {
+                "FaceURL": face_url,
+                "BackURL": back_url,
+                "NumWidth": num_width,
+                "NumHeight": num_height,
+                "BackIsHidden": True,
+                "UniqueBack": False,
+                "Type": 0
+            }
+
+            cards_processed += cards_on_sheet
             deck_id_counter += 1
+
+        # Create single combined pool deck
+        import hashlib
+        guid = hashlib.md5(f"pool{x}{z}".encode()).hexdigest()[:6]
+
+        pool_deck = {
+            "Name": "DeckCustom",
+            "Transform": {
+                "posX": x,
+                "posY": y,
+                "posZ": z,
+                "rotX": 0.0,
+                "rotY": 180.0,
+                "rotZ": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+            },
+            "Nickname": "Pool Move Cards",
+            "Description": "Advanced move cards for drafting",
+            "GMNotes": "",
+            "ColorDiffuse": {
+                "r": 0.713235259,
+                "g": 0.713235259,
+                "b": 0.713235259
+            },
+            "LayoutGroupSortIndex": 0,
+            "Value": 0,
+            "Locked": False,
+            "Grid": True,
+            "Snap": True,
+            "IgnoreFoW": False,
+            "MeasureMovement": False,
+            "DragSelectable": True,
+            "Autoraise": True,
+            "Sticky": True,
+            "Tooltip": True,
+            "GridProjection": False,
+            "HideWhenFaceDown": True,
+            "Hands": True,
+            "SidewaysCard": False,
+            "DeckIDs": all_deck_ids,
+            "CustomDeck": custom_decks,
+            "LuaScript": "",
+            "LuaScriptState": "",
+            "XmlUI": "",
+            "GUID": guid
+        }
+        objects.append(pool_deck)
+        x += spacing
 
     # Rhythm card decks
     rhythm_count = count_cards_in_csv(data_dir / 'rhythm-cards.csv')
@@ -307,10 +336,10 @@ def generate_tts_save(username, repo, tts_files, branch="main"):
         x += spacing
         deck_id_counter += 1
 
-    # Stumble cards
+    # Stumble cards (use move card backs)
     if tts_files['stumble_fronts']:
         face_url = get_github_raw_url(username, repo, branch, tts_files['stumble_fronts'][0])
-        back_url = get_github_raw_url(username, repo, branch, tts_files['stumble_back'])
+        back_url = get_github_raw_url(username, repo, branch, tts_files['move_back'])  # Use move backs
 
         deck = create_deck_object(
             name="Stumble Cards",
@@ -373,7 +402,8 @@ def main():
     tts_files = find_tts_files(tts_dir)
 
     print(f'📦 Found sprite sheets:')
-    print(f'  - Move cards: {len(tts_files["move_fronts"])} sheet(s)')
+    print(f'  - Starter cards: {len(tts_files["starter_fronts"])} sheet(s)')
+    print(f'  - Pool cards: {len(tts_files["pool_fronts"])} sheet(s)')
     print(f'  - Rhythm cards: {len(tts_files["rhythm_fronts"])} sheet(s)')
     print(f'  - Judge cards: {len(tts_files["judge_fronts"])} sheet(s)')
     print(f'  - Stumble cards: {len(tts_files["stumble_fronts"])} sheet(s)')

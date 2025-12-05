@@ -625,33 +625,45 @@ def main():
 
     cards_per_sheet = 9
 
-    # Generate move cards (including 5 copies of starter deck)
-    move_cards = []
+    # Generate move cards - separate starter and pool cards
+    starter_cards = []
+    pool_cards = []
     with open(data_dir / 'moves.csv', 'r') as f:
         reader = csv.DictReader(f)
         for row in reader:
             if row['deck_type'] == 'starter':
-                # Generate 5 copies for 5 players
-                for _ in range(5):
-                    move_cards.append(generate_move_card(row, len(move_cards)))
+                # Generate single copy of starter cards
+                starter_cards.append(generate_move_card(row, len(starter_cards)))
             else:
-                move_cards.append(generate_move_card(row, len(move_cards)))
+                pool_cards.append(generate_move_card(row, len(pool_cards)))
 
-    # Split into sheets
-    move_sheets = []
-    for i in range(0, len(move_cards), cards_per_sheet):
-        sheet_cards = move_cards[i:i + cards_per_sheet]
-        # Pad with empty divs if needed
+    # Generate starter cards file
+    starter_sheets = []
+    for i in range(0, len(starter_cards), cards_per_sheet):
+        sheet_cards = starter_cards[i:i + cards_per_sheet]
         while len(sheet_cards) < cards_per_sheet:
             sheet_cards.append('<div></div>')
-        move_sheets.append(sheet_cards)
+        starter_sheets.append(sheet_cards)
 
-    # Generate single HTML file with all move cards
-    html = generate_html_document(move_sheets, 'move')
-    output_file = output_dir / 'move-cards.html'
+    html = generate_html_document(starter_sheets, 'starter-move')
+    output_file = output_dir / 'starter-cards.html'
     with open(output_file, 'w') as f:
         f.write(html)
-    print(f'Generated: {output_file.name} ({len(move_sheets)} sheets)')
+    print(f'Generated: {output_file.name} ({len(starter_sheets)} sheets, {len(starter_cards)} cards)')
+
+    # Generate pool move cards file
+    pool_sheets = []
+    for i in range(0, len(pool_cards), cards_per_sheet):
+        sheet_cards = pool_cards[i:i + cards_per_sheet]
+        while len(sheet_cards) < cards_per_sheet:
+            sheet_cards.append('<div></div>')
+        pool_sheets.append(sheet_cards)
+
+    html = generate_html_document(pool_sheets, 'pool-move')
+    output_file = output_dir / 'pool-cards.html'
+    with open(output_file, 'w') as f:
+        f.write(html)
+    print(f'Generated: {output_file.name} ({len(pool_sheets)} sheets, {len(pool_cards)} cards)')
 
     # Generate rhythm cards
     rhythm_cards = []
@@ -720,7 +732,8 @@ def main():
             f.write(html)
         print(f'Generated: {output_file.name}')
 
-    print(f'\nTotal move cards: {len(move_cards)}')
+    print(f'\nTotal starter cards: {len(starter_cards)}')
+    print(f'Total pool cards: {len(pool_cards)}')
     print(f'Total rhythm cards: {len(rhythm_cards)}')
     print(f'Total judge cards: {len(judge_cards)}')
     print(f'Total stumble cards: {len(stumble_cards)}')

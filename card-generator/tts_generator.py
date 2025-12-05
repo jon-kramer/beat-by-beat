@@ -44,6 +44,7 @@ def create_tts_html(card_htmls, css_content):
             margin: 0;
             padding: 0;
             background: white;
+            overflow: hidden;
         }}
 
         .tts-grid {{
@@ -51,16 +52,26 @@ def create_tts_html(card_htmls, css_content):
             grid-template-columns: repeat({CARDS_PER_ROW}, 2.5in);
             grid-template-rows: repeat({CARDS_PER_COL}, 3.5in);
             gap: 0;
+            width: fit-content;
+            height: fit-content;
         }}
 
         .card {{
             width: 2.5in !important;
             height: 3.5in !important;
             margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+            position: relative !important;
         }}
 
         /* Import original card styles */
         {css_content}
+
+        /* Ensure borders are inside the card dimensions, not adding to them */
+        .card {{
+            box-sizing: border-box !important;
+        }}
     </style>
 </head>
 <body>
@@ -188,20 +199,54 @@ async def render_sprite_sheet(card_htmls, css_content, output_path):
 
 
 async def render_card_backs(html_path, output_path):
-    """Render card back sprite sheet"""
+    """Render single card back image for TTS"""
     back_html, css_content = await extract_card_back_from_html(html_path)
 
     if not back_html:
         print(f'Warning: No card back found in {html_path.name}')
         return
 
-    # Create sheet filled with card backs
-    back_htmls = [back_html] * CARDS_PER_SHEET
+    # Create HTML for a single card back (not a grid)
+    html = f'''<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
 
-    # Use same scaling approach as fronts
-    natural_width = int(10 * 2.5 * 96)
-    natural_height = int(7 * 3.5 * 96)
-    scale_factor = SHEET_WIDTH / natural_width
+        body {{
+            margin: 0;
+            padding: 0;
+            background: white;
+        }}
+
+        .card {{
+            width: 2.5in !important;
+            height: 3.5in !important;
+            margin: 0 !important;
+        }}
+
+        /* Import original card styles */
+        {css_content}
+    </style>
+</head>
+<body>
+    {back_html}
+</body>
+</html>'''
+
+    # Calculate dimensions for a single card at high resolution
+    natural_width = int(2.5 * 96)  # 240px at 96 DPI
+    natural_height = int(3.5 * 96)  # 336px at 96 DPI
+
+    # Target resolution for single card (same quality as sprite sheets)
+    target_width = 410  # Standard TTS card back resolution
+    target_height = 574
+    scale_factor = target_width / natural_width
 
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -210,8 +255,6 @@ async def render_card_backs(html_path, output_path):
             device_scale_factor=scale_factor
         )
         page = await context.new_page()
-
-        html = create_tts_html(back_htmls, css_content)
 
         await page.set_content(html)
         await page.wait_for_load_state('networkidle')
@@ -241,17 +284,26 @@ async def main():
         print('   Run ./scripts/generate-all.sh or python card-generator/generator.py first')
         return
 
-    # Generate move cards
-    move_html = output_dir / 'move-cards.html'
-    if move_html.exists():
-        print('Generating move card sprites...')
-        card_htmls, css = await extract_cards_from_html(move_html)
-        print(f'  Found {len(card_htmls)} move cards')
-        await render_sprite_sheet(card_htmls, css, tts_dir / 'move-cards')
+    # Generate starter move cards
+    starter_html = output_dir / 'starter-cards.html'
+    if starter_html.exists():
+        print('Generating starter card sprites...')
+        card_htmls, css = await extract_cards_from_html(starter_html)
+        print(f'  Found {len(card_htmls)} starter cards')
+        await render_sprite_sheet(card_htmls, css, tts_dir / 'starter-cards')
 
-        print('Generating move card backs...')
-        move_backs_html = output_dir / 'move-backs.html'
-        await render_card_backs(move_backs_html, tts_dir / 'move-backs.png')
+    # Generate pool move cards
+    pool_html = output_dir / 'pool-cards.html'
+    if pool_html.exists():
+        print('Generating pool card sprites...')
+        card_htmls, css = await extract_cards_from_html(pool_html)
+        print(f'  Found {len(card_htmls)} pool cards')
+        await render_sprite_sheet(card_htmls, css, tts_dir / 'pool-cards')
+
+    # Generate move card backs (shared by starter, pool, and stumble)
+    print('Generating move card backs...')
+    move_backs_html = output_dir / 'move-backs.html'
+    await render_card_backs(move_backs_html, tts_dir / 'move-backs.png')
 
     # Generate rhythm cards
     rhythm_html = output_dir / 'rhythm-cards.html'
@@ -277,17 +329,14 @@ async def main():
         judge_backs_html = output_dir / 'judge-backs.html'
         await render_card_backs(judge_backs_html, tts_dir / 'judge-backs.png')
 
-    # Generate stumble cards
+    # Generate stumble cards (use move card backs)
     stumble_html = output_dir / 'stumble-cards.html'
     if stumble_html.exists():
         print('\nGenerating stumble card sprites...')
         card_htmls, css = await extract_cards_from_html(stumble_html)
         print(f'  Found {len(card_htmls)} stumble cards')
         await render_sprite_sheet(card_htmls, css, tts_dir / 'stumble-cards')
-
-        print('Generating stumble card backs...')
-        stumble_backs_html = output_dir / 'stumble-backs.html'
-        await render_card_backs(stumble_backs_html, tts_dir / 'stumble-backs.png')
+        print('  (Using move card backs for stumbles)')
 
     print()
     print(f'✅ TTS sprite sheets generated in: {tts_dir}')

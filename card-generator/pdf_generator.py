@@ -50,14 +50,14 @@ async def main():
 
     # List of HTML files to convert
     html_files = [
-        'move-cards.html',
+        'starter-cards.html',
+        'pool-cards.html',
         'rhythm-cards.html',
         'judge-cards.html',
         'stumble-cards.html',
         'move-backs.html',
         'rhythm-backs.html',
         'judge-backs.html',
-        'stumble-backs.html',
     ]
 
     print('🎭 Beat by Beat - PDF Generator')
@@ -78,11 +78,12 @@ async def main():
     print(f'✅ All PDFs generated in: {pdf_dir}')
     print()
     print('Print-ready PDFs:')
-    print(f'  - move-cards.pdf (19 sheets)')
+    print(f'  - starter-cards.pdf (2 sheets)')
+    print(f'  - pool-cards.pdf (14 sheets)')
     print(f'  - rhythm-cards.pdf (9 sheets)')
     print(f'  - judge-cards.pdf (2 sheets)')
     print(f'  - stumble-cards.pdf (3 sheets)')
-    print(f'  + 4 back files')
+    print(f'  + 3 back files (move, rhythm, judge)')
 
 
 if __name__ == '__main__':
