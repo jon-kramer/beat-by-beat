@@ -14,11 +14,11 @@ ENV/
 uv.lock
 
 # Generated outputs (don't commit these - regenerate as needed)
-output/
-pdf/
+output/html/
+output/pdf/
 
 # Keep TTS sprites (these go on GitHub for TTS hosting)
-# tts/ is NOT ignored - we want these in git!
+# output/tts/ is NOT ignored - we want these in git for GitHub raw URLs!
 
 # OS files
 .DS_Store
