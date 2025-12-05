@@ -11,7 +11,8 @@
       "Bash(fi)",
       "Bash(if [ -d \"tts\" ])",
       "Bash(then mv tts/* output/tts/)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

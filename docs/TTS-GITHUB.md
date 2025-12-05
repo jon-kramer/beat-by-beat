@@ -32,12 +32,24 @@ The script will:
 1. Generate TTS sprites
 2. Show what changed
 3. Ask "Commit and push? (y/n)"
-4. If yes: commit, push, and show URLs
-5. Copy URLs and paste into TTS
+4. If yes: commit, push, generate TTS save file, and show URLs
+5. Import the JSON file into TTS
 
 ## Using in Tabletop Simulator
 
-### Import a Custom Deck
+### Option 1: One-Click Import (Recommended)
+
+1. In TTS: **Objects** → **Saved Objects** → **Import**
+2. Select `output/tts/beat-by-beat.json`
+3. All decks spawn on the table automatically!
+
+This is the easiest method - all decks are pre-configured with proper URLs and card counts.
+
+### Option 2: Manual Import (Legacy Method)
+
+If you need to create custom decks manually:
+
+#### Import a Custom Deck
 
 1. In TTS: **Objects** → **Components** → **Custom** → **Deck**
 2. Fill in the form:

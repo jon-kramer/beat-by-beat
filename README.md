@@ -60,7 +60,12 @@ Output locations:
 ./scripts/publish-tts.sh
 ```
 
-This generates TTS sprites, commits them to git, pushes to GitHub, and displays the raw URLs for importing into Tabletop Simulator.
+This generates TTS sprites, commits them to git, pushes to GitHub, and creates a TTS save file for one-click import.
+
+**To import in TTS:**
+1. In Tabletop Simulator: **Objects** → **Saved Objects** → **Import**
+2. Select `output/tts/beat-by-beat.json`
+3. All decks spawn automatically!
 
 ## Directory Structure
 

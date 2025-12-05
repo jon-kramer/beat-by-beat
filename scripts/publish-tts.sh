@@ -59,6 +59,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "✅ Published to GitHub!"
     echo ""
 
+    # Generate TTS JSON save file
+    echo "🎮 Generating TTS save file..."
+    uv run python card-generator/tts_json_generator.py
+
+    echo ""
+
     # Generate and display URLs
     $(dirname "$0")/get-tts-urls.sh
 else
