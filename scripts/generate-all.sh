@@ -32,7 +32,7 @@ echo ""
 
 # Step 3: Generate TTS sprites
 echo "Step 3/3: Generating TTS sprite sheets..."
-if ! uv run python card-generator/tts_generator_v2.py 2>&1; then
+if ! uv run python card-generator/tts_generator.py 2>&1; then
     echo ""
     echo "❌ TTS generation failed!"
     echo ""
