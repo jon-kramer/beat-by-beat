@@ -18,10 +18,11 @@ A game consists of **6 rounds** (called *phrases*). Each phrase contains **8 bea
 
 Move cards are the core of the game. Each move card has the following attributes:
 
-- **Execution Cost** — A number (1–5) indicating how difficult the move is to perform.
+- **Technique** — A number (1–5) indicating how difficult the move is to perform.
 - **Style** — The dance style: Latin, Ballroom, Classical, Jazz, or Street.
 - **Type** — A movement category: Step, Spin, Jump, Pose, Flow, or Pop.
 - **Bonus Score** (some cards) — Points awarded at the end of the round if successfully executed.
+- **Recovery Action** — The action (Stamina, Inspiration, or Refinement) granted when this move is played.
 
 ### Move Types
 
@@ -40,11 +41,11 @@ Each player begins with a 10-card starter deck of styleless basic moves. These c
 
 ### Stumble Cards
 
-Stumble cards represent a failed performance. They have an Execution Cost of 0, no Style, no Type, no Bonus Score, cannot win crowd favor, and provide no discount to subsequent moves. Players are forced to take a Stumble when they have no cards in hand. Stumble cards remain in your deck permanently unless removed via Refinement.
+Stumble cards represent a failed performance. They have Technique 0, no Style, no Type, no Bonus Score, cannot win crowd favor, and provide no chaining energy to subsequent moves. Players are forced to take a Stumble when they have no cards in hand. Stumble cards can be removed from your deck via the Refinement recovery action, like any other card.
 
 ### Rhythm Cards
 
-Rhythm cards modify individual beats. The Rhythm deck contains 80 cards—approximately 60% have no effect (with flavor text), while the remainder provide bonuses such as reducing execution costs, increasing bonus scores, granting bonus recovery actions, or modifying crowd favor rules. Some effects are conditional based on a move's Style or Type.
+Rhythm cards modify individual beats. The Rhythm deck contains 80 cards—approximately 60% have no effect (with flavor text), while the remainder provide bonuses such as granting additional energy, increasing bonus scores, providing bonus recovery actions, or modifying crowd favor rules. Some effects are conditional based on a move's Style or Type.
 
 ### Judge Cards
 
@@ -94,17 +95,17 @@ Each beat proceeds through these phases:
 
 ## Execution
 
-To execute a move, you must pay its **Execution Cost** by discarding cards from your hand equal to (Cost − 1). A cost-1 move requires no discards; a cost-3 move requires discarding 2 cards.
+To execute a move, you must pay its **Technique** requirement. Each beat provides 1 free energy, plus any energy from discounts. Discard cards equal to (Technique − 1 − Discounts).
 
-### Discounts
+### Energy & Discounts
 
-The effective cost of a move can be reduced by:
+You start each beat with **1 free energy**. Additional energy comes from:
 
-- **Chaining:** If your previous beat's move was successfully executed AND its cost is less than or equal to your current move's cost, you receive a discount equal to the previous move's cost.
-- **Crowd Favor Bonus:** If your previous move won crowd favor (outright, not style-matched), you receive an additional +1 discount.
-- **Rhythm Card Effects:** The active Rhythm card for this beat may provide cost reductions.
+- **Chaining:** If your previous beat's move was successfully executed, you receive energy equal to that move's Technique value.
+- **Crowd Favor Bonus:** If your previous move won crowd favor (outright, not style-matched), you receive an additional +1 energy.
+- **Rhythm Card Effects:** The active Rhythm card for this beat may provide additional energy or reduce technique requirements.
 
-**Important:** If a move's cost drops to 0 or below after discounts, no cards need to be discarded.
+**Example:** A Technique 4 move with a 3-Technique chain bonus requires: 4 − 1 (free energy) − 3 (chain) = 0 cards discarded (perfect chain).
 
 ### Mandatory Payment
 
@@ -112,22 +113,22 @@ If you have enough cards in hand to pay the (discounted) cost, you **must** pay 
 
 ### Failed Execution
 
-If you cannot pay the cost, the move fails. Flip the card face-down to indicate failure. Failed moves do not provide chaining discounts, cannot win crowd favor, and do not count toward Judge requirements.
+If you cannot pay the cost, the move fails. Flip the card face-down to indicate failure. Failed moves do not provide chaining energy, cannot win crowd favor, and do not count toward Judge requirements.
 
 ### Execution Example
 
 *The following example shows how chaining works across a full phrase:*
 
-| Beat | Cost | Discount | Discards | Notes |
-|------|------|----------|----------|-------|
-| 1 | 1 | — | 0 | Cost 1 needs 0 discards |
-| 2 | 2 | 1 (from Beat 1) | 0 | Effective cost = 1 |
-| 3 | 4 | 2 (from Beat 2) | 1 | Effective cost = 2 |
-| 4 | 4 | 4 (from Beat 3) | 0 | Effective cost = 0 |
-| 5 | 3 | 0 (cost dropped) | 2 | No chain discount |
-| 6 | 5 | 3 (from Beat 5) | 1 | Needs 1 card; fails if 0 in hand |
-| 7 | 5 | 0 (Beat 6 failed) | 4 | No discount from failed move |
-| 8 | 2 | 0 (Beat 7 failed) | 1 | Recovers the chain |
+| Beat | Technique | Energy Available | Discards | Notes |
+|------|-----------|------------------|----------|-------|
+| 1 | 1 | 1 (free) | 0 | 1 − 1 = 0 |
+| 2 | 2 | 1 (free) + 1 (chain) | 0 | 2 − 1 − 1 = 0 |
+| 3 | 4 | 1 (free) + 2 (chain) | 1 | 4 − 1 − 2 = 1 |
+| 4 | 4 | 1 (free) + 4 (chain) | 0 | 4 − 1 − 4 = −1 (min 0) |
+| 5 | 3 | 1 (free) + 4 (chain) | 0 | 3 − 1 − 4 = −2 (min 0) |
+| 6 | 1 | 1 (free) + 3 (chain) | 0 | 1 − 1 − 3 = −3 (min 0) |
+| 7 | 5 | 1 (free) + 1 (chain) | 3 | 5 − 1 − 1 = 3 |
+| 8 | 2 | 1 (free) + 5 (chain) | 0 | 2 − 1 − 5 = −4 (min 0) |
 
 ---
 
@@ -140,22 +141,22 @@ After execution, determine which moves win crowd favor for this beat.
 A move wins crowd favor if:
 
 - It was successfully executed, AND
-- Its Execution Cost is strictly higher than all other successfully executed moves this beat.
+- Its Technique is strictly higher than all other successfully executed moves this beat.
 
-**Ties:** If multiple players tie for the highest cost, none of them win crowd favor.
+**Ties:** If multiple players tie for the highest Technique, none of them win crowd favor.
 
 **Style Matching:** If another player's successfully executed move shares the same Style as a winning move, that player also "wins" crowd favor for scoring purposes. Rotate both cards sideways to indicate this.
 
 ### Crowd Favor Rewards
 
-- **Next-Beat Discount:** Only the player who won outright (highest cost) receives a +1 discount on their next beat. Style-matchers do not receive this bonus.
+- **Next-Beat Energy Bonus:** Only the player who won outright (highest Technique) receives +1 energy on their next beat. Style-matchers do not receive this bonus.
 - **End-of-Round Scoring:** Both outright winners and style-matchers count their wins toward end-of-round placement scoring (see Scoring).
 
 ---
 
 ## Recovery Actions
 
-After crowd favor is resolved, each player chooses **one** recovery action. Players may also take any bonus recovery actions granted by Rhythm cards, move effects, or other sources.
+After crowd favor is resolved, each player takes the recovery action **granted by their played move card**. Players may also take any bonus recovery actions granted by Rhythm cards or other sources.
 
 **Actions resolve in this order:** Stamina → Refinement → Inspiration
 
@@ -165,7 +166,7 @@ After crowd favor is resolved, each player chooses **one** recovery action. Play
 
 3. **Inspiration:** Draw 3 cards from the Common Move Pool. Choose 2 to add to your personal discard pile (face-down). Place the remaining 1 in the common discard pile (face-down).
 
-**Inspiration Shortage:** If multiple players choose Inspiration but there aren't enough cards in the Common Move Pool, first reshuffle the common discard pile into the pool. If there still aren't enough cards, none of the Inspiration actions resolve.
+**Note:** If the Common Move Pool runs low during Inspiration actions, reshuffle the common discard pile into the pool as needed.
 
 ### Deck Cycling
 
@@ -247,19 +248,22 @@ Some move cards belong to two styles (e.g., "Latin / Ballroom"). When playing a 
 
 Select → Reveal → Execute → Crowd Favor → Recovery
 
-### Execution Cost Formula
+### Execution Formula
 
-Discards Required = Cost − 1 − Discounts
+Discards Required = Technique − 1 (free energy) − Chain Energy − Bonuses
 
-### Chaining Discount
+### Energy Sources
 
-If previous move succeeded AND previous cost ≤ current cost → Discount = previous cost
+- **Base:** 1 free energy per beat
+- **Chaining:** If previous move succeeded → Energy = previous move's Technique
+- **Crowd Favor:** +1 energy if you won outright last beat
+- **Rhythm Cards:** May grant additional energy
 
-### Recovery Actions
+### Recovery Actions (Granted by Played Move)
 
-- Stamina: Draw 2 from personal deck
-- Refinement: Remove 1 card from hand or discard
-- Inspiration: Draw 3 from Pool, keep 2, discard 1
+- **Stamina:** Draw 2 from personal deck
+- **Refinement:** Remove 1 card from hand or discard
+- **Inspiration:** Draw 3 from Pool, keep 2, discard 1
 
 ### Crowd Favor Scoring
 
@@ -278,7 +282,8 @@ If previous move succeeded AND previous cost ≤ current cost → Discount = pre
 | Rhythm Deck | 80 cards |
 | Judge Cards | 12 cards |
 | Stumble Cards | ~20 cards |
+| Score Cards | 20× 1pt, 15× 2pt, 10× 5pt, 5× 10pt |
 
 ---
 
-*Version 2.0 — Updated with refined Inspiration, Rhythm visibility, and Type system*
+*Version 2.1 — Streamlined with Technique system, move-based recovery, and chaining improvements*

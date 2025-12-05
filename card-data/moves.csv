@@ -1,131 +1,131 @@
-name,cost,type,style,bonus,deck_type,image_file
-Simple Step,1,Step,,0,starter,simple-step.svg
-Basic Bounce,1,Jump,,0,starter,basic-bounce.svg
-Quarter Turn,1,Spin,,0,starter,quarter-turn.svg
-Sway,1,Flow,,0,starter,sway.svg
-Side Step,2,Step,,1,starter,side-step.svg
-Arm Wave,2,Flow,,1,starter,arm-wave.svg
-Half Turn,2,Spin,,1,starter,half-turn.svg
-Hop,2,Jump,,1,starter,hop.svg
-Standing Pose,3,Pose,,1,starter,standing-pose.svg
-Sharp Accent,3,Pop,,1,starter,sharp-accent.svg
-Basic Salsa,1,Step,Latin,0,pool,basic-salsa.svg
-Cuban Motion,1,Flow,Latin,0,pool,cuban-motion.svg
-Salsa Side Step,1,Step,Latin,0,pool,salsa-side-step.svg
-Rumba Box,1,Step,Latin,0,pool,rumba-box.svg
-Rumba Walk,2,Step,Latin,1,pool,rumba-walk.svg
-Cross Body Lead,2,Step,Latin,1,pool,cross-body-lead.svg
-Hip Roll,2,Flow,Latin,1,pool,hip-roll.svg
-Cucaracha,2,Step,Latin,1,pool,cucaracha.svg
-Open Break,2,Pose,Latin,1,pool,open-break.svg
-Mambo Break,3,Step,Latin,2,pool,mambo-break.svg
-Spot Turn,3,Spin,Latin,1,pool,spot-turn.svg
-New York,3,Pose,Latin,2,pool,new-york.svg
-Samba Bounce,3,Step,Latin,2,pool,samba-bounce.svg
-Copa,3,Spin,Latin,2,pool,copa.svg
-Cha-Cha Lock,4,Step,Latin,2,pool,cha-cha-lock.svg
-Double Spin,4,Spin,Latin,3,pool,double-spin.svg
-Sliding Doors,4,Step,Latin,2,pool,sliding-doors.svg
-Batucada,5,Step,Latin,3,pool,batucada.svg
-Triple Spin,5,Spin,Latin,4,pool,triple-spin.svg
-Ocho Cortado,5,Step,Latin,3,pool,ocho-cortado.svg
-Box Step,1,Step,Ballroom,0,pool,box-step.svg
-Closed Position,1,Pose,Ballroom,0,pool,closed-position.svg
-Rise and Fall,1,Flow,Ballroom,0,pool,rise-and-fall.svg
-Chasse,1,Step,Ballroom,0,pool,chasse.svg
-Promenade Step,2,Step,Ballroom,1,pool,promenade-step.svg
-Natural Turn,2,Spin,Ballroom,1,pool,natural-turn.svg
-Reverse Turn,2,Spin,Ballroom,1,pool,reverse-turn.svg
-Heel Turn,2,Step,Ballroom,1,pool,heel-turn.svg
-Progressive Link,2,Step,Ballroom,1,pool,progressive-link.svg
-Foxtrot Feather,3,Step,Ballroom,2,pool,foxtrot-feather.svg
-Whisk,3,Step,Ballroom,1,pool,whisk.svg
-Tango Stalk,3,Step,Ballroom,2,pool,tango-stalk.svg
-Corté,3,Pose,Ballroom,2,pool,corte.svg
-Hover Cross,3,Flow,Ballroom,2,pool,hover-cross.svg
-Outside Partner,4,Step,Ballroom,2,pool,outside-partner.svg
-Viennese Cross,4,Spin,Ballroom,3,pool,viennese-cross.svg
-Fallaway,4,Flow,Ballroom,2,pool,fallaway.svg
-The Dip,5,Pose,Ballroom,4,pool,the-dip.svg
-Fleckerl,5,Spin,Ballroom,3,pool,fleckerl.svg
-Throwaway Oversway,5,Pose,Ballroom,3,pool,throwaway-oversway.svg
-Plié,1,Pose,Classical,0,pool,plie.svg
-Relevé,1,Pose,Classical,0,pool,releve.svg
-Tendu,1,Step,Classical,0,pool,tendu.svg
-Release,1,Flow,Classical,0,pool,release.svg
-Port de Bras,2,Flow,Classical,1,pool,port-de-bras.svg
-Chassé,2,Step,Classical,1,pool,chasse-classical.svg
-Glissade,2,Step,Classical,1,pool,glissade.svg
-Spiral,2,Flow,Classical,1,pool,spiral.svg
-Fall and Recover,2,Flow,Classical,1,pool,fall-and-recover.svg
-Arabesque,3,Pose,Classical,2,pool,arabesque.svg
-Pirouette,3,Spin,Classical,2,pool,pirouette.svg
-Assemblé,3,Jump,Classical,2,pool,assemble.svg
-Floor Roll,3,Flow,Classical,2,pool,floor-roll.svg
-Hinge,3,Pose,Classical,2,pool,hinge.svg
-Fouetté,4,Spin,Classical,3,pool,fouette.svg
-Jeté,4,Jump,Classical,3,pool,jete.svg
-Off-Axis Turn,4,Spin,Classical,3,pool,off-axis-turn.svg
-Grand Jeté,5,Jump,Classical,4,pool,grand-jete.svg
-Tour en l'Air,5,Jump,Classical,4,pool,tour-en-lair.svg
-Lift,5,Pose,Classical,4,pool,lift.svg
-Ball Change,1,Step,Jazz,0,pool,ball-change.svg
-Jazz Walk,1,Step,Jazz,0,pool,jazz-walk.svg
-Jazz Hands,1,Pose,Jazz,0,pool,jazz-hands.svg
-Triple Step,1,Step,Jazz,0,pool,triple-step.svg
-Pivot Step,2,Spin,Jazz,1,pool,pivot-step.svg
-Kick Step,2,Jump,Jazz,1,pool,kick-step.svg
-Body Roll,2,Flow,Jazz,1,pool,body-roll.svg
-Charleston Kick,2,Step,Jazz,1,pool,charleston-kick.svg
-Kick-Ball-Change,2,Step,Jazz,1,pool,kick-ball-change.svg
-Fan Kick,3,Jump,Jazz,2,pool,fan-kick.svg
-Stag Leap,3,Jump,Jazz,2,pool,stag-leap.svg
-Jazz Split,3,Pose,Jazz,2,pool,jazz-split.svg
-Swingout,3,Spin,Jazz,2,pool,swingout.svg
-Barrel Turn,4,Spin,Jazz,2,pool,barrel-turn.svg
-Axel Jump,4,Jump,Jazz,3,pool,axel-jump.svg
-Toe Touch,4,Jump,Jazz,3,pool,toe-touch.svg
-Lindy Turn,4,Spin,Jazz,2,pool,lindy-turn.svg
-Switch Leap,5,Jump,Jazz,3,pool,switch-leap.svg
-Death Drop,5,Pose,Jazz,4,pool,death-drop.svg
-Air Step,5,Jump,Jazz,4,pool,air-step.svg
-Bounce,1,Step,Street,0,pool,bounce.svg
-Head Nod,1,Pop,Street,0,pool,head-nod.svg
-Step Touch,1,Step,Street,0,pool,step-touch.svg
-Rock,1,Step,Street,0,pool,rock.svg
-Arm Wave,2,Flow,Street,1,pool,arm-wave-street.svg
-Chest Pop,2,Pop,Street,1,pool,chest-pop.svg
-Moonwalk Prep,2,Step,Street,1,pool,moonwalk-prep.svg
-Robot,2,Pop,Street,1,pool,robot.svg
-Wrist Roll,2,Flow,Street,1,pool,wrist-roll.svg
-Toprock,3,Step,Street,2,pool,toprock.svg
-Tutting,3,Pose,Street,2,pool,tutting.svg
-Locking,3,Pop,Street,2,pool,locking.svg
-House Step,3,Step,Street,2,pool,house-step.svg
-Glide,3,Flow,Street,2,pool,glide.svg
-Freeze,4,Pose,Street,3,pool,freeze.svg
-Moonwalk,4,Flow,Street,3,pool,moonwalk.svg
-Krump Hit,4,Pop,Street,2,pool,krump-hit.svg
-Headspin,4,Spin,Street,3,pool,headspin.svg
-Windmill,5,Flow,Street,4,pool,windmill.svg
-Air Flare,5,Jump,Street,4,pool,air-flare.svg
-Chassé,2,Step,Classical/Ballroom,1,pool,chasse-multi.svg
-Pivot Turn,2,Spin,Latin/Ballroom,1,pool,pivot-turn.svg
-Ball Change,1,Step,Jazz/Street,0,pool,ball-change-multi.svg
-Body Wave,2,Flow,Street/Classical,1,pool,body-wave.svg
-Isolation,2,Pop,Street/Jazz,1,pool,isolation.svg
-Grapevine,2,Step,Ballroom/Jazz,1,pool,grapevine.svg
-Fan Kick,3,Jump,Jazz/Classical,2,pool,fan-kick-multi.svg
-Pas de Bourrée,2,Step,Classical/Jazz,1,pool,pas-de-bourree.svg
-Floor Slide,3,Flow,Street/Classical,2,pool,floor-slide.svg
-Leap,4,Jump,Classical/Jazz,2,pool,leap.svg
-Dip,3,Pose,Ballroom/Latin,2,pool,dip.svg
-Syncopated Step,2,Step,Latin/Jazz,1,pool,syncopated-step.svg
-Arm Flourish,2,Flow,Ballroom/Classical,1,pool,arm-flourish.svg
-Hip Accent,2,Pop,Latin/Street,1,pool,hip-accent.svg
-Traveling Turn,3,Spin,Ballroom/Classical,2,pool,traveling-turn.svg
-Attitude,3,Pose,Classical/Jazz,2,pool,attitude.svg
-Lock Step,3,Pop,Street/Jazz,2,pool,lock-step.svg
-Partner Spin,4,Spin,Latin/Ballroom,2,pool,partner-spin.svg
-Power Pose,4,Pose,Street/Jazz,2,pool,power-pose.svg
-Flying Leap,5,Jump,Classical/Jazz,3,pool,flying-leap.svg
+name,cost,type,style,bonus,deck_type,recovery_action,image_file
+Simple Step,1,Step,,0,starter,Stamina,simple-step.svg
+Basic Bounce,1,Jump,,0,starter,Stamina,basic-bounce.svg
+Quarter Turn,1,Spin,,0,starter,Stamina,quarter-turn.svg
+Sway,1,Flow,,0,starter,Stamina,sway.svg
+Side Step,2,Step,,1,starter,Inspiration,side-step.svg
+Arm Wave,2,Flow,,1,starter,Inspiration,arm-wave.svg
+Half Turn,2,Spin,,1,starter,Inspiration,half-turn.svg
+Hop,2,Jump,,1,starter,Stamina,hop.svg
+Standing Pose,3,Pose,,1,starter,Inspiration,standing-pose.svg
+Sharp Accent,3,Pop,,1,starter,Stamina,sharp-accent.svg
+Basic Salsa,1,Step,Latin,0,pool,Stamina,basic-salsa.svg
+Cuban Motion,1,Flow,Latin,0,pool,Stamina,cuban-motion.svg
+Salsa Side Step,1,Step,Latin,0,pool,Stamina,salsa-side-step.svg
+Rumba Box,1,Step,Latin,0,pool,Stamina,rumba-box.svg
+Rumba Walk,2,Step,Latin,1,pool,Inspiration,rumba-walk.svg
+Cross Body Lead,2,Step,Latin,1,pool,Stamina,cross-body-lead.svg
+Hip Roll,2,Flow,Latin,1,pool,Stamina,hip-roll.svg
+Cucaracha,2,Step,Latin,1,pool,Stamina,cucaracha.svg
+Open Break,2,Pose,Latin,1,pool,Inspiration,open-break.svg
+Mambo Break,3,Step,Latin,2,pool,Stamina,mambo-break.svg
+Spot Turn,3,Spin,Latin,1,pool,Refinement,spot-turn.svg
+New York,3,Pose,Latin,2,pool,Inspiration,new-york.svg
+Samba Bounce,3,Step,Latin,2,pool,Inspiration,samba-bounce.svg
+Copa,3,Spin,Latin,2,pool,Stamina,copa.svg
+Cha-Cha Lock,4,Step,Latin,2,pool,Refinement,cha-cha-lock.svg
+Double Spin,4,Spin,Latin,3,pool,Inspiration,double-spin.svg
+Sliding Doors,4,Step,Latin,2,pool,Stamina,sliding-doors.svg
+Batucada,5,Step,Latin,3,pool,Refinement,batucada.svg
+Triple Spin,5,Spin,Latin,4,pool,Inspiration,triple-spin.svg
+Ocho Cortado,5,Step,Latin,3,pool,Refinement,ocho-cortado.svg
+Box Step,1,Step,Ballroom,0,pool,Stamina,box-step.svg
+Closed Position,1,Pose,Ballroom,0,pool,Stamina,closed-position.svg
+Rise and Fall,1,Flow,Ballroom,0,pool,Stamina,rise-and-fall.svg
+Chasse,1,Step,Ballroom,0,pool,Inspiration,chasse.svg
+Promenade Step,2,Step,Ballroom,1,pool,Stamina,promenade-step.svg
+Natural Turn,2,Spin,Ballroom,1,pool,Stamina,natural-turn.svg
+Reverse Turn,2,Spin,Ballroom,1,pool,Inspiration,reverse-turn.svg
+Heel Turn,2,Step,Ballroom,1,pool,Inspiration,heel-turn.svg
+Progressive Link,2,Step,Ballroom,1,pool,Inspiration,progressive-link.svg
+Foxtrot Feather,3,Step,Ballroom,2,pool,Inspiration,foxtrot-feather.svg
+Whisk,3,Step,Ballroom,1,pool,Inspiration,whisk.svg
+Tango Stalk,3,Step,Ballroom,2,pool,Stamina,tango-stalk.svg
+Corté,3,Pose,Ballroom,2,pool,Stamina,corte.svg
+Hover Cross,3,Flow,Ballroom,2,pool,Stamina,hover-cross.svg
+Outside Partner,4,Step,Ballroom,2,pool,Stamina,outside-partner.svg
+Viennese Cross,4,Spin,Ballroom,3,pool,Inspiration,viennese-cross.svg
+Fallaway,4,Flow,Ballroom,2,pool,Stamina,fallaway.svg
+The Dip,5,Pose,Ballroom,4,pool,Refinement,the-dip.svg
+Fleckerl,5,Spin,Ballroom,3,pool,Refinement,fleckerl.svg
+Throwaway Oversway,5,Pose,Ballroom,3,pool,Refinement,throwaway-oversway.svg
+Plié,1,Pose,Classical,0,pool,Stamina,plie.svg
+Relevé,1,Pose,Classical,0,pool,Stamina,releve.svg
+Tendu,1,Step,Classical,0,pool,Stamina,tendu.svg
+Release,1,Flow,Classical,0,pool,Inspiration,release.svg
+Port de Bras,2,Flow,Classical,1,pool,Inspiration,port-de-bras.svg
+Chassé,2,Step,Classical,1,pool,Inspiration,chasse-classical.svg
+Glissade,2,Step,Classical,1,pool,Stamina,glissade.svg
+Spiral,2,Flow,Classical,1,pool,Inspiration,spiral.svg
+Fall and Recover,2,Flow,Classical,1,pool,Stamina,fall-and-recover.svg
+Arabesque,3,Pose,Classical,2,pool,Inspiration,arabesque.svg
+Pirouette,3,Spin,Classical,2,pool,Refinement,pirouette.svg
+Assemblé,3,Jump,Classical,2,pool,Inspiration,assemble.svg
+Floor Roll,3,Flow,Classical,2,pool,Inspiration,floor-roll.svg
+Hinge,3,Pose,Classical,2,pool,Inspiration,hinge.svg
+Fouetté,4,Spin,Classical,3,pool,Refinement,fouette.svg
+Jeté,4,Jump,Classical,3,pool,Refinement,jete.svg
+Off-Axis Turn,4,Spin,Classical,3,pool,Inspiration,off-axis-turn.svg
+Grand Jeté,5,Jump,Classical,4,pool,Refinement,grand-jete.svg
+Tour en l'Air,5,Jump,Classical,4,pool,Refinement,tour-en-lair.svg
+Lift,5,Pose,Classical,4,pool,Refinement,lift.svg
+Ball Change,1,Step,Jazz,0,pool,Stamina,ball-change.svg
+Jazz Walk,1,Step,Jazz,0,pool,Inspiration,jazz-walk.svg
+Jazz Hands,1,Pose,Jazz,0,pool,Stamina,jazz-hands.svg
+Triple Step,1,Step,Jazz,0,pool,Stamina,triple-step.svg
+Pivot Step,2,Spin,Jazz,1,pool,Inspiration,pivot-step.svg
+Kick Step,2,Jump,Jazz,1,pool,Stamina,kick-step.svg
+Body Roll,2,Flow,Jazz,1,pool,Inspiration,body-roll.svg
+Charleston Kick,2,Step,Jazz,1,pool,Stamina,charleston-kick.svg
+Kick-Ball-Change,2,Step,Jazz,1,pool,Stamina,kick-ball-change.svg
+Fan Kick,3,Jump,Jazz,2,pool,Stamina,fan-kick.svg
+Stag Leap,3,Jump,Jazz,2,pool,Inspiration,stag-leap.svg
+Jazz Split,3,Pose,Jazz,2,pool,Stamina,jazz-split.svg
+Swingout,3,Spin,Jazz,2,pool,Inspiration,swingout.svg
+Barrel Turn,4,Spin,Jazz,2,pool,Refinement,barrel-turn.svg
+Axel Jump,4,Jump,Jazz,3,pool,Inspiration,axel-jump.svg
+Toe Touch,4,Jump,Jazz,3,pool,Inspiration,toe-touch.svg
+Lindy Turn,4,Spin,Jazz,2,pool,Refinement,lindy-turn.svg
+Switch Leap,5,Jump,Jazz,3,pool,Refinement,switch-leap.svg
+Death Drop,5,Pose,Jazz,4,pool,Refinement,death-drop.svg
+Air Step,5,Jump,Jazz,4,pool,Refinement,air-step.svg
+Bounce,1,Step,Street,0,pool,Stamina,bounce.svg
+Head Nod,1,Pop,Street,0,pool,Stamina,head-nod.svg
+Step Touch,1,Step,Street,0,pool,Stamina,step-touch.svg
+Rock,1,Step,Street,0,pool,Stamina,rock.svg
+Arm Wave,2,Flow,Street,1,pool,Stamina,arm-wave-street.svg
+Chest Pop,2,Pop,Street,1,pool,Stamina,chest-pop.svg
+Moonwalk Prep,2,Step,Street,1,pool,Inspiration,moonwalk-prep.svg
+Robot,2,Pop,Street,1,pool,Stamina,robot.svg
+Wrist Roll,2,Flow,Street,1,pool,Inspiration,wrist-roll.svg
+Toprock,3,Step,Street,2,pool,Refinement,toprock.svg
+Tutting,3,Pose,Street,2,pool,Stamina,tutting.svg
+Locking,3,Pop,Street,2,pool,Inspiration,locking.svg
+House Step,3,Step,Street,2,pool,Inspiration,house-step.svg
+Glide,3,Flow,Street,2,pool,Inspiration,glide.svg
+Freeze,4,Pose,Street,3,pool,Inspiration,freeze.svg
+Moonwalk,4,Flow,Street,3,pool,Refinement,moonwalk.svg
+Krump Hit,4,Pop,Street,2,pool,Stamina,krump-hit.svg
+Headspin,4,Spin,Street,3,pool,Inspiration,headspin.svg
+Windmill,5,Flow,Street,4,pool,Refinement,windmill.svg
+Air Flare,5,Jump,Street,4,pool,Inspiration,air-flare.svg
+Chassé,2,Step,Classical/Ballroom,1,pool,Inspiration,chasse-multi.svg
+Pivot Turn,2,Spin,Latin/Ballroom,1,pool,Stamina,pivot-turn.svg
+Ball Change,1,Step,Jazz/Street,0,pool,Stamina,ball-change-multi.svg
+Body Wave,2,Flow,Street/Classical,1,pool,Stamina,body-wave.svg
+Isolation,2,Pop,Street/Jazz,1,pool,Inspiration,isolation.svg
+Grapevine,2,Step,Ballroom/Jazz,1,pool,Inspiration,grapevine.svg
+Fan Kick,3,Jump,Jazz/Classical,2,pool,Stamina,fan-kick-multi.svg
+Pas de Bourrée,2,Step,Classical/Jazz,1,pool,Inspiration,pas-de-bourree.svg
+Floor Slide,3,Flow,Street/Classical,2,pool,Inspiration,floor-slide.svg
+Leap,4,Jump,Classical/Jazz,2,pool,Inspiration,leap.svg
+Dip,3,Pose,Ballroom/Latin,2,pool,Refinement,dip.svg
+Syncopated Step,2,Step,Latin/Jazz,1,pool,Stamina,syncopated-step.svg
+Arm Flourish,2,Flow,Ballroom/Classical,1,pool,Inspiration,arm-flourish.svg
+Hip Accent,2,Pop,Latin/Street,1,pool,Stamina,hip-accent.svg
+Traveling Turn,3,Spin,Ballroom/Classical,2,pool,Stamina,traveling-turn.svg
+Attitude,3,Pose,Classical/Jazz,2,pool,Inspiration,attitude.svg
+Lock Step,3,Pop,Street/Jazz,2,pool,Stamina,lock-step.svg
+Partner Spin,4,Spin,Latin/Ballroom,2,pool,Refinement,partner-spin.svg
+Power Pose,4,Pose,Street/Jazz,2,pool,Refinement,power-pose.svg
+Flying Leap,5,Jump,Classical/Jazz,3,pool,Inspiration,flying-leap.svg
