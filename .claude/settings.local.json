@@ -12,7 +12,8 @@
       "Bash(if [ -d \"tts\" ])",
       "Bash(then mv tts/* output/tts/)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(./scripts/generate-all.sh:*)"
     ],
     "deny": [],
     "ask": []

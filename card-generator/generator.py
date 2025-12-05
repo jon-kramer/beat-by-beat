@@ -15,7 +15,7 @@ COLORS = {
     'Classical': '#8FB996',       # Soft Sage
     'Jazz': '#E9C46A',            # Warm Gold
     'Street': '#457B9D',          # Slate Blue
-    'Styleless': '#FAF8F3',       # Cream
+    'Styleless': '#B8B8B8',       # Light Gray (changed from cream for contrast)
 }
 
 # Type icons (simple SVG paths for placeholder graphics)
@@ -63,23 +63,30 @@ TYPE_ICONS = {
     </svg>''',
 }
 
-# Recovery action icons
-RECOVERY_ICONS = {
-    'Stamina': '''<svg viewBox="0 0 100 100" class="recovery-icon">
-        <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="6"/>
-        <path d="M30,50 L45,35 L45,65 Z" fill="currentColor"/>
-        <path d="M70,50 L55,35 L55,65 Z" fill="currentColor"/>
-    </svg>''',
-
-    'Inspiration': '''<svg viewBox="0 0 100 100" class="recovery-icon">
-        <path d="M50,15 L58,45 L88,45 L63,63 L73,93 L50,75 L27,93 L37,63 L12,45 L42,45 Z" fill="currentColor"/>
-    </svg>''',
-
-    'Refinement': '''<svg viewBox="0 0 100 100" class="recovery-icon">
-        <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="6" rx="5"/>
-        <line x1="30" y1="30" x2="70" y2="70" stroke="currentColor" stroke-width="6"/>
-        <line x1="70" y1="30" x2="30" y2="70" stroke="currentColor" stroke-width="6"/>
-    </svg>''',
+# Recovery action icons and descriptions
+RECOVERY_ACTIONS = {
+    'Stamina': {
+        'icon': '''<svg viewBox="0 0 100 100" class="recovery-icon">
+            <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="6"/>
+            <path d="M30,50 L45,35 L45,65 Z" fill="currentColor"/>
+            <path d="M70,50 L55,35 L55,65 Z" fill="currentColor"/>
+        </svg>''',
+        'description': 'Recover 1 Stamina'
+    },
+    'Inspiration': {
+        'icon': '''<svg viewBox="0 0 100 100" class="recovery-icon">
+            <path d="M50,15 L58,45 L88,45 L63,63 L73,93 L50,75 L27,93 L37,63 L12,45 L42,45 Z" fill="currentColor"/>
+        </svg>''',
+        'description': 'Draw 1 card'
+    },
+    'Refinement': {
+        'icon': '''<svg viewBox="0 0 100 100" class="recovery-icon">
+            <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="6" rx="5"/>
+            <line x1="30" y1="30" x2="70" y2="70" stroke="currentColor" stroke-width="6"/>
+            <line x1="70" y1="30" x2="30" y2="70" stroke="currentColor" stroke-width="6"/>
+        </svg>''',
+        'description': 'Discard & redraw 1'
+    },
 }
 
 
@@ -106,7 +113,10 @@ def generate_move_card(move, card_num):
     style_attr = f'background: {style_bg};' if is_gradient else f'background-color: {style_bg};'
 
     type_icon = TYPE_ICONS.get(move['type'], '')
-    recovery_icon = RECOVERY_ICONS.get(move.get('recovery_action', 'Stamina'), '')
+    recovery_action = move.get('recovery_action', 'Stamina')
+    recovery_data = RECOVERY_ACTIONS.get(recovery_action, RECOVERY_ACTIONS['Stamina'])
+    recovery_icon = recovery_data['icon']
+    recovery_desc = recovery_data['description']
 
     style_display = move['style'] if move['style'] else 'Basic'
 
@@ -138,7 +148,7 @@ def generate_move_card(move, card_num):
                 </div>
                 <div class="stat-row recovery-row">
                     <span class="stat-label-recovery">{recovery_icon}</span>
-                    <span class="stat-value recovery-value">{move.get('recovery_action', 'Stamina')}</span>
+                    <span class="stat-value recovery-value">{recovery_desc}</span>
                 </div>
             </div>
         </div>
@@ -191,21 +201,43 @@ def generate_judge_card(judge):
 
 
 def generate_stumble_card():
-    """Generate HTML for a stumble card"""
+    """Generate HTML for a stumble card - matches move card layout"""
+    stumble_icon = '''<svg viewBox="0 0 100 100" class="type-icon">
+        <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="8"/>
+        <line x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="8"/>
+        <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="6"/>
+    </svg>'''
+
     return f'''
-    <div class="card stumble-card">
+    <div class="card move-card stumble-card">
         <div class="card-header stumble-header">
             <div class="card-name">Stumble</div>
         </div>
-        <div class="card-body stumble-body">
-            <div class="stumble-icon">✗</div>
-            <div class="stumble-text">
-                Cost: 0<br/>
-                No Style<br/>
-                No Type<br/>
-                No Bonus
+        <div class="card-body">
+            <div class="card-image">
+                {stumble_icon}
             </div>
-            <div class="stumble-flavor">You lose your footing and the rhythm.</div>
+            <div class="card-stats">
+                <div class="stat-row technique-row">
+                    <span class="stat-label">Technique</span>
+                    <span class="stat-value technique-value">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Type</span>
+                    <span class="stat-value stumble-text">—</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Style</span>
+                    <span class="stat-value stumble-text">—</span>
+                </div>
+                <div class="stat-row bonus-row stumble-bonus-row">
+                    <span class="stat-label">Bonus</span>
+                    <span class="stat-value bonus-value stumble-text">+0</span>
+                </div>
+                <div class="stat-row stumble-penalty-row">
+                    <span class="stat-value stumble-penalty">Lose your rhythm</span>
+                </div>
+            </div>
         </div>
     </div>'''
 
@@ -290,7 +322,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0.1in;
+    padding: 0.08in;
 }
 
 .move-card .card-image {
@@ -298,26 +330,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.1in 0;
+    margin: 0.05in 0;
 }
 
 .type-icon {
-    width: 1in;
-    height: 1in;
+    width: 0.8in;
+    height: 0.8in;
     opacity: 0.7;
 }
 
 .move-card .card-stats {
     display: flex;
     flex-direction: column;
-    gap: 0.08in;
+    gap: 0.05in;
 }
 
 .stat-row {
     display: flex;
     justify-content: space-between;
-    font-size: 10pt;
-    padding: 0.05in 0.1in;
+    font-size: 9pt;
+    padding: 0.04in 0.08in;
     border-radius: 0.05in;
     background: #f8f8f8;
 }
@@ -336,7 +368,7 @@ body {
 }
 
 .technique-value {
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: bold;
     color: #c0392b;
 }
@@ -346,7 +378,7 @@ body {
 }
 
 .bonus-value {
-    font-size: 12pt;
+    font-size: 11pt;
     font-weight: bold;
     color: #27ae60;
 }
@@ -369,9 +401,10 @@ body {
 }
 
 .recovery-value {
-    font-size: 9pt;
+    font-size: 8pt;
     font-weight: bold;
     color: #1565c0;
+    flex: 1;
 }
 
 /* Rhythm Cards */
@@ -487,44 +520,30 @@ body {
 }
 
 /* Stumble Cards */
-.stumble-card .card-header {
-    padding: 0.15in;
-    background: #34495E;
+.stumble-header {
+    background: #5A5A5A !important;
     color: white;
-    text-align: center;
-}
-
-.stumble-card .card-name {
-    font-size: 14pt;
-    font-weight: bold;
-}
-
-.stumble-card .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0.2in;
-    gap: 0.15in;
-}
-
-.stumble-icon {
-    font-size: 48pt;
-    color: #e74c3c;
-    opacity: 0.3;
 }
 
 .stumble-text {
-    font-size: 10pt;
-    text-align: center;
-    color: #555;
+    color: #999;
 }
 
-.stumble-flavor {
+.stumble-bonus-row {
+    background: #f0f0f0 !important;
+}
+
+.stumble-penalty-row {
+    background: #FFE6E6;
+    justify-content: center;
+    padding: 0.06in 0.08in;
+}
+
+.stumble-penalty {
     font-size: 9pt;
+    font-weight: bold;
+    color: #c0392b;
     font-style: italic;
-    color: #888;
     text-align: center;
 }
 
