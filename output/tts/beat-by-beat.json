@@ -272,8 +272,8 @@
         "scaleY": 1.0,
         "scaleZ": 1.0
       },
-      "Nickname": "Rhythm Cards 1",
-      "Description": "Rhythm cards - Sheet 1",
+      "Nickname": "Rhythm Cards",
+      "Description": "Rhythm cards for modifying gameplay",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.713235259,
@@ -365,61 +365,7 @@
         466,
         467,
         468,
-        469
-      ],
-      "CustomDeck": {
-        "4": {
-          "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-cards_1.png",
-          "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-backs.png",
-          "NumWidth": 10,
-          "NumHeight": 7,
-          "BackIsHidden": true,
-          "UniqueBack": true,
-          "Type": 0
-        }
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "9c2c9c"
-    },
-    {
-      "Name": "DeckCustom",
-      "Transform": {
-        "posX": 13.5,
-        "posY": 1,
-        "posZ": 0,
-        "rotX": 0.0,
-        "rotY": 180.0,
-        "rotZ": 0.0,
-        "scaleX": 1.0,
-        "scaleY": 1.0,
-        "scaleZ": 1.0
-      },
-      "Nickname": "Rhythm Cards 2",
-      "Description": "Rhythm cards - Sheet 2",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.713235259,
-        "g": 0.713235259,
-        "b": 0.713235259
-      },
-      "LayoutGroupSortIndex": 0,
-      "Value": 0,
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": true,
-      "Hands": true,
-      "SidewaysCard": false,
-      "DeckIDs": [
+        469,
         500,
         501,
         502,
@@ -432,6 +378,15 @@
         509
       ],
       "CustomDeck": {
+        "4": {
+          "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-cards_1.png",
+          "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-backs.png",
+          "NumWidth": 10,
+          "NumHeight": 7,
+          "BackIsHidden": true,
+          "UniqueBack": true,
+          "Type": 0
+        },
         "5": {
           "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-cards_2.png",
           "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-backs.png",
@@ -445,12 +400,12 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "773bbf"
+      "GUID": "cf120f"
     },
     {
       "Name": "DeckCustom",
       "Transform": {
-        "posX": 18.0,
+        "posX": 13.5,
         "posY": 1,
         "posZ": 0,
         "rotX": 0.0,
@@ -511,12 +466,12 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "7d48a2"
+      "GUID": "97f565"
     },
     {
       "Name": "DeckCustom",
       "Transform": {
-        "posX": 22.5,
+        "posX": 18.0,
         "posY": 1,
         "posZ": 0,
         "rotX": 0.0,
@@ -585,7 +540,7 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "GUID": "c4fc17"
+      "GUID": "38a307"
     }
   ],
   "TabStates": {},

@@ -283,30 +283,90 @@ def generate_tts_save(username, repo, tts_files, branch="main"):
         objects.append(pool_deck)
         x += spacing
 
-    # Rhythm card decks
-    rhythm_count = count_cards_in_csv(data_dir / 'rhythm-cards.csv')
-    cards_processed = 0
-
-    for i, front_file in enumerate(tts_files['rhythm_fronts'], 1):
-        cards_remaining = rhythm_count - cards_processed
-        cards_on_sheet = min(70, cards_remaining)
-        cards_processed += cards_on_sheet
-
-        face_url = get_github_raw_url(username, repo, branch, front_file)
+    # Rhythm card deck (combined into one deck from all sheets)
+    if tts_files['rhythm_fronts']:
+        rhythm_count = count_cards_in_csv(data_dir / 'rhythm-cards.csv')
         back_url = get_github_raw_url(username, repo, branch, tts_files['rhythm_back'])
 
-        deck = create_deck_object(
-            name=f"Rhythm Cards {i}" if len(tts_files['rhythm_fronts']) > 1 else "Rhythm Cards",
-            face_url=face_url,
-            back_url=back_url,
-            num_cards=cards_on_sheet,
-            position=[x, y, z],
-            description=f"Rhythm cards - Sheet {i}",
-            deck_id=deck_id_counter
-        )
-        objects.append(deck)
+        # Combine all rhythm card sheets into a single deck
+        all_deck_ids = []
+        custom_decks = {}
+
+        cards_processed = 0
+        for i, front_file in enumerate(tts_files['rhythm_fronts'], start=1):
+            cards_remaining = rhythm_count - cards_processed
+            cards_on_sheet = min(70, cards_remaining)
+
+            # Add deck IDs for this sheet
+            start_id = deck_id_counter * 100
+            all_deck_ids.extend(range(start_id, start_id + cards_on_sheet))
+
+            # Add custom deck entry
+            face_url = get_github_raw_url(username, repo, branch, front_file)
+            num_width, num_height = calculate_grid_size(cards_on_sheet)
+
+            custom_decks[str(deck_id_counter)] = {
+                "FaceURL": face_url,
+                "BackURL": back_url,
+                "NumWidth": num_width,
+                "NumHeight": num_height,
+                "BackIsHidden": True,
+                "UniqueBack": True,
+                "Type": 0
+            }
+
+            cards_processed += cards_on_sheet
+            deck_id_counter += 1
+
+        # Create single combined rhythm deck
+        import hashlib
+        guid = hashlib.md5(f"rhythm{x}{z}".encode()).hexdigest()[:6]
+
+        rhythm_deck = {
+            "Name": "DeckCustom",
+            "Transform": {
+                "posX": x,
+                "posY": y,
+                "posZ": z,
+                "rotX": 0.0,
+                "rotY": 180.0,
+                "rotZ": 0.0,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+            },
+            "Nickname": "Rhythm Cards",
+            "Description": "Rhythm cards for modifying gameplay",
+            "GMNotes": "",
+            "ColorDiffuse": {
+                "r": 0.713235259,
+                "g": 0.713235259,
+                "b": 0.713235259
+            },
+            "LayoutGroupSortIndex": 0,
+            "Value": 0,
+            "Locked": False,
+            "Grid": True,
+            "Snap": True,
+            "IgnoreFoW": False,
+            "MeasureMovement": False,
+            "DragSelectable": True,
+            "Autoraise": True,
+            "Sticky": True,
+            "Tooltip": True,
+            "GridProjection": False,
+            "HideWhenFaceDown": True,
+            "Hands": True,
+            "SidewaysCard": False,
+            "DeckIDs": all_deck_ids,
+            "CustomDeck": custom_decks,
+            "LuaScript": "",
+            "LuaScriptState": "",
+            "XmlUI": "",
+            "GUID": guid
+        }
+        objects.append(rhythm_deck)
         x += spacing
-        deck_id_counter += 1
 
     # Judge cards
     if tts_files['judge_fronts']:
