@@ -78,20 +78,11 @@ def find_tts_files(tts_dir):
 
 
 def calculate_grid_size(num_cards):
-    """Calculate NumWidth and NumHeight based on actual number of cards"""
-    import math
-
-    # TTS uses 10x7 grid, but we need to report actual dimensions
-    cards_per_row = 10
-    num_rows = math.ceil(num_cards / cards_per_row)
-
-    # For last row, calculate actual width
-    cards_in_last_row = num_cards % cards_per_row
-    if cards_in_last_row == 0:
-        cards_in_last_row = cards_per_row
-
-    # Return width (10 for full grid) and height (actual rows)
-    return cards_per_row, num_rows
+    """Calculate NumWidth and NumHeight - always 10x7 for consistency"""
+    # TTS sprite sheets are ALWAYS rendered as 10x7 grids (70 cards)
+    # Even if there are fewer cards, we pad with empty spaces
+    # This ensures consistent dimensions and proper card sizing in TTS
+    return 10, 7
 
 
 def create_deck_object(name, face_url, back_url, num_cards, position, description="", deck_id=1):

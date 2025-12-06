@@ -65,7 +65,7 @@
           "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/starter-cards.png",
           "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/move-backs.png",
           "NumWidth": 10,
-          "NumHeight": 1,
+          "NumHeight": 7,
           "BackIsHidden": true,
           "UniqueBack": false,
           "Type": 0
@@ -248,7 +248,7 @@
           "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/pool-cards_2.png",
           "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/move-backs.png",
           "NumWidth": 10,
-          "NumHeight": 5,
+          "NumHeight": 7,
           "BackIsHidden": true,
           "UniqueBack": false,
           "Type": 0
@@ -436,7 +436,7 @@
           "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-cards_2.png",
           "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/rhythm-backs.png",
           "NumWidth": 10,
-          "NumHeight": 1,
+          "NumHeight": 7,
           "BackIsHidden": true,
           "UniqueBack": false,
           "Type": 0
@@ -502,7 +502,7 @@
           "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/judge-cards.png",
           "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/judge-backs.png",
           "NumWidth": 10,
-          "NumHeight": 2,
+          "NumHeight": 7,
           "BackIsHidden": true,
           "UniqueBack": false,
           "Type": 0
@@ -576,7 +576,7 @@
           "FaceURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/stumble-cards.png",
           "BackURL": "https://raw.githubusercontent.com/jon-kramer/beat-by-beat/main/output/tts/move-backs.png",
           "NumWidth": 10,
-          "NumHeight": 2,
+          "NumHeight": 7,
           "BackIsHidden": true,
           "UniqueBack": false,
           "Type": 0

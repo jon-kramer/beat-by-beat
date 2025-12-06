@@ -148,18 +148,27 @@ async def extract_card_back_from_html(html_path):
 
 
 async def render_sprite_sheet(card_htmls, css_content, output_path):
-    """Render cards as TTS sprite sheets"""
+    """Render cards as TTS sprite sheets - always 10x7 grid at 4096x4096px"""
     # Split into sheets of 70 cards
     num_sheets = (len(card_htmls) + CARDS_PER_SHEET - 1) // CARDS_PER_SHEET
 
+    # IMPORTANT: TTS requires exact 10x7 grid dimensions
     # Natural grid size at 96 DPI: 10 × 2.5in = 25in, 7 × 3.5in = 24.5in
     # At 96 DPI: 2400px × 2352px
-    # We want 4096px output, so scale factor is 4096/2400 ≈ 1.7
+    # We want 4096x4096px output for TTS
+
+    # Use 4096x4096 as target (square for TTS compatibility)
     natural_width = int(10 * 2.5 * 96)  # 2400px
     natural_height = int(7 * 3.5 * 96)  # 2352px
 
-    # Calculate device scale factor to get target resolution
-    scale_factor = SHEET_WIDTH / natural_width
+    # Scale to fit 4096x4096 while maintaining aspect ratio
+    # Use the dimension that requires more scaling
+    scale_factor_x = 4096 / natural_width  # ~1.707
+    scale_factor_y = 4096 / natural_height  # ~1.741
+    scale_factor = min(scale_factor_x, scale_factor_y)  # Use smaller to fit within 4096x4096
+
+    final_width = int(natural_width * scale_factor)
+    final_height = int(natural_height * scale_factor)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -174,11 +183,11 @@ async def render_sprite_sheet(card_htmls, css_content, output_path):
             end_idx = min(start_idx + CARDS_PER_SHEET, len(card_htmls))
             sheet_cards = card_htmls[start_idx:end_idx]
 
-            # Pad with empty divs if needed
+            # ALWAYS pad to exactly 70 cards (10x7 grid) for consistent TTS sprite sheets
             while len(sheet_cards) < CARDS_PER_SHEET:
-                sheet_cards.append('<div class="card" style="background: white;"></div>')
+                sheet_cards.append('<div class="card" style="background: white; border: 2px solid #333;"></div>')
 
-            # Create HTML for this sheet
+            # Create HTML for this sheet - ALWAYS 10x7 grid
             html = create_tts_html(sheet_cards, css_content)
 
             # Render
@@ -193,7 +202,7 @@ async def render_sprite_sheet(card_htmls, css_content, output_path):
 
             save_path = output_path.parent / filename
             await page.screenshot(path=str(save_path), full_page=True)
-            print(f'Generated: {filename}')
+            print(f'Generated: {filename} ({final_width}x{final_height}px, 10x7 grid)')
 
         await browser.close()
 
