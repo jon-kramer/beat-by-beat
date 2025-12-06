@@ -139,7 +139,7 @@ def create_deck_object(name, face_url, back_url, num_cards, position, descriptio
                 "NumWidth": num_width,
                 "NumHeight": num_height,
                 "BackIsHidden": True,
-                "UniqueBack": False,
+                "UniqueBack": True,
                 "Type": 0
             }
         },
@@ -226,7 +226,7 @@ def generate_tts_save(username, repo, tts_files, branch="main"):
                 "NumWidth": num_width,
                 "NumHeight": num_height,
                 "BackIsHidden": True,
-                "UniqueBack": False,
+                "UniqueBack": True,
                 "Type": 0
             }
 
