@@ -41,7 +41,9 @@ Each player begins with a 10-card starter deck of styleless basic moves. These c
 
 ### Stumble Cards
 
-Stumble cards represent a failed performance. They have Technique 0, no Style, no Type, no Bonus Score, cannot win crowd favor, and provide no chaining energy to subsequent moves. Players are forced to take a Stumble when they have no cards in hand. Stumble cards can be removed from your deck via the Refinement recovery action, like any other card.
+Stumble cards represent a failed performance. They have Technique 0, no Style, no Type, no Bonus Score, cannot win crowd favor, and provide no chaining energy to subsequent moves. Players are forced to take a Stumble when they have no cards in hand.
+
+When you play a Stumble card, you may draw 1 card from your personal deck as your recovery action. Stumble cards can be removed from your deck via the Refinement recovery action, like any other card.
 
 ### Rhythm Cards
 
@@ -162,7 +164,7 @@ After crowd favor is resolved, each player takes the recovery action **granted b
 
 1. **Stamina:** Draw 2 cards from your personal deck.
 
-2. **Refinement:** Take a card from your hand or personal discard pile and place it face-down in the common discard pile. (This removes the card from your deck permanently.)
+2. **Refinement:** Take a card from your hand or personal discard pile and place it face-down in the common discard pile (this removes the card from your deck permanently), then draw 2 cards from your personal deck.
 
 3. **Inspiration:** Draw 3 cards from the Common Move Pool. Choose 2 to add to your personal discard pile (face-down). Place the remaining 1 in the common discard pile (face-down).
 
@@ -222,7 +224,7 @@ Some move cards belong to two styles (e.g., "Latin / Ballroom"). When playing a 
 
 - For **Judge requirements:** The card counts as ONE of its listed styles (player's choice when claiming).
 - For **Style matching:** The card can match with either of its styles for crowd favor purposes.
-- For **Ongoing effects:** Multi-style cards do not benefit from style-specific bonuses (e.g., "+1 bonus to Latin moves") unless otherwise specified.
+- For **Style-specific bonuses:** Multi-style cards can benefit from bonuses that apply to either of their listed styles (e.g., a Latin/Ballroom card gains the benefit from "+1 bonus to Latin moves" or "+1 bonus to Ballroom moves").
 
 ---
 
@@ -261,9 +263,10 @@ Discards Required = Technique − 1 (free energy) − Chain Energy − Bonuses
 
 ### Recovery Actions (Granted by Played Move)
 
-- **Stamina:** Draw 2 from personal deck
-- **Refinement:** Remove 1 card from hand or discard
-- **Inspiration:** Draw 3 from Pool, keep 2, discard 1
+- **Stamina:** Draw 2
+- **Refinement:** Remove 1, then draw 2
+- **Inspiration:** Draw 3 from Pool (keep 2, discard 1)
+- **Stumble:** Draw 1
 
 ### Crowd Favor Scoring
 
@@ -281,7 +284,7 @@ Discards Required = Technique − 1 (free energy) − Chain Energy − Bonuses
 | Common Move Pool | 120 cards |
 | Rhythm Deck | 80 cards |
 | Judge Cards | 12 cards |
-| Stumble Cards | ~20 cards |
+| Stumble Cards | 30 cards |
 | Score Cards | 20× 1pt, 15× 2pt, 10× 5pt, 5× 10pt |
 
 ---

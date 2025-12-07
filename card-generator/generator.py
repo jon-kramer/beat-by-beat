@@ -71,13 +71,13 @@ RECOVERY_ACTIONS = {
             <path d="M30,50 L45,35 L45,65 Z" fill="currentColor"/>
             <path d="M70,50 L55,35 L55,65 Z" fill="currentColor"/>
         </svg>''',
-        'description': 'Recover 1 Stamina'
+        'description': 'Draw 2'
     },
     'Inspiration': {
         'icon': '''<svg viewBox="0 0 100 100" class="recovery-icon">
             <path d="M50,15 L58,45 L88,45 L63,63 L73,93 L50,75 L27,93 L37,63 L12,45 L42,45 Z" fill="currentColor"/>
         </svg>''',
-        'description': 'Draw 1 card'
+        'description': 'Draft 2 from pool'
     },
     'Refinement': {
         'icon': '''<svg viewBox="0 0 100 100" class="recovery-icon">
@@ -85,7 +85,7 @@ RECOVERY_ACTIONS = {
             <line x1="30" y1="30" x2="70" y2="70" stroke="currentColor" stroke-width="6"/>
             <line x1="70" y1="30" x2="30" y2="70" stroke="currentColor" stroke-width="6"/>
         </svg>''',
-        'description': 'Discard & redraw 1'
+        'description': 'Remove 1, draw 2'
     },
 }
 
@@ -208,6 +208,11 @@ def generate_stumble_card():
         <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="6"/>
     </svg>'''
 
+    recovery_icon = '''<svg viewBox="0 0 100 100" class="recovery-icon">
+        <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="6"/>
+        <path d="M50,35 L50,65" stroke="currentColor" stroke-width="6"/>
+    </svg>'''
+
     return f'''
     <div class="card move-card stumble-card">
         <div class="card-header stumble-header">
@@ -234,8 +239,9 @@ def generate_stumble_card():
                     <span class="stat-label">Bonus</span>
                     <span class="stat-value bonus-value stumble-text">+0</span>
                 </div>
-                <div class="stat-row stumble-penalty-row">
-                    <span class="stat-value stumble-penalty">Lose your rhythm</span>
+                <div class="stat-row recovery-row stumble-recovery-row">
+                    <span class="stat-label-recovery">{recovery_icon}</span>
+                    <span class="stat-value recovery-value">Draw 1</span>
                 </div>
             </div>
         </div>
@@ -708,7 +714,7 @@ def main():
     print(f'Generated: {output_file.name} ({len(judge_sheets)} sheets)')
 
     # Generate stumble cards
-    stumble_cards = [generate_stumble_card() for _ in range(20)]
+    stumble_cards = [generate_stumble_card() for _ in range(30)]
 
     stumble_sheets = []
     for i in range(0, len(stumble_cards), cards_per_sheet):
